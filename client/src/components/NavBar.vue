@@ -11,50 +11,49 @@ function toggleMenu() {
 </script>
 
 <template>
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="">
-      <img src="" width="112" height="28">
-    </a>
-
-    <a role="button" @click="toggleMenu" :class="{ 'is-active': isActive } " class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div :class="{ 'is-active': isActive } " id="navbarBasicExample" class="navbar-menu"  >
+  <nav
+    :class="{ 'bg-black': isActive, 'text-white': isActive }"
+    id="navbarBasicExample"
+    class="navbar-menu"
+  >
     <div class="navbar-start">
-      <RouterLink to="/" class="navbar-item">
+      <RouterLink
+        to="/home"
+        class="navbar-item text-white hover:text-gray-300"
+      >
         Home
       </RouterLink>
 
-      <RouterLink to="/documentation" class="navbar-item">
+      <RouterLink
+        to="/documentation"
+        class="navbar-item text-white hover:text-gray-300"
+      >
         Documentation
       </RouterLink>
 
-      <RouterLink to="/products" class="navbar-item">
+      <RouterLink
+        to="/products"
+        class="navbar-item text-white hover:text-gray-300"
+      >
         Products
       </RouterLink>
 
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
+        <a class="navbar-link text-white hover:text-gray-300">
           More
         </a>
 
-        <div class="navbar-dropdown">
-          <RouterLink to="/about" class="navbar-item">
+        <div class="navbar-dropdown bg-black">
+          <RouterLink
+            to="/about"
+            class="navbar-item text-white hover:text-gray-300"
+          >
             About
           </RouterLink>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
+          <a class="navbar-item text-white hover:text-gray-300">Jobs</a>
+          <a class="navbar-item text-white hover:text-gray-300">Contact</a>
+          <hr class="navbar-divider border-white">
+          <a class="navbar-item text-white hover:text-gray-300">
             Report an issue
           </a>
         </div>
@@ -64,24 +63,27 @@ function toggleMenu() {
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
+          <a
+            class="button is-primary bg-white text-black"
+          >
             <strong>Sign up</strong>
           </a>
-          <a class="button is-light">
+          <a class="button is-light text-white hover:text-gray-300">
             Log in
           </a>
         </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 </template>
 
 <style scoped>
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-    .router-link-active {
-        border-bottom: 2px solid #00d1b2;
-    }
-
-
+.navbar {
+    background-color: black;
+    color: white;
+  }
 </style>

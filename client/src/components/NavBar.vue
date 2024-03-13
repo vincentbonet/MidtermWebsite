@@ -41,13 +41,20 @@ function toggleMenu() {
           <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
             <RouterLink to="/signup">Sign Up</RouterLink>
           </a>
-          <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-            <RouterLink to="/login">Log In</RouterLink>
-          </a>
-        </div>
+          <div class="relative" @mouseover="showDropdown = true" @mouseout="showDropdown = false">
+          <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" @click="toggleDropdown">
+            Log In
+          </button>
+          <div v-if="showDropdown" class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
+            <RouterLink to="/login/user1" class="block px-4 py-2 text-gray-800 hover:bg-gray-300">User 1</RouterLink>
+            <RouterLink to="/login/user2" class="block px-4 py-2 text-gray-800 hover:bg-gray-300">User 2</RouterLink>
+            <RouterLink to="/login/user3" class="block px-4 py-2 text-gray-800 hover:bg-gray-300">User 3</RouterLink>
+          </div>
       </div>
     </div>
-  </nav>
+  </div>
+</div>
+</nav>
 </template>
 
 

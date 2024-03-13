@@ -4,7 +4,8 @@
 
 <template>
     <div>
-        <h1>Don't need to provide a comprehensive statistics page, the home page will do.</h1>
+        <h1>Extra Credit</h1>
+        <h2>Don't need to provide a comprehensive statistics page, the home page will do.</h2>
     </div>
 </template>
 

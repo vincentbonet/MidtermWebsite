@@ -3,7 +3,7 @@
 
 <template>
     <div>
-        <h1>People Searchs</h1>
+        <h1>People Search</h1>
     </div>
 </template>
 

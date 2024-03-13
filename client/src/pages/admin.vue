@@ -34,6 +34,7 @@ export default {
 </script>
 
 <template>
+<div class ="flex items-center justify-center h-screen">
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <div v-for="(user, index) in users" :key="index" class="bg-white p-4 shadow-md rounded-md">
       <img :src="user.picture" :alt="`${user.firstName} ${user.lastName}'s Profile Picture`" class="w-16 h-16 rounded-full mx-auto mb-4">
@@ -46,6 +47,7 @@ export default {
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <style scoped>

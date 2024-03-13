@@ -25,7 +25,7 @@ function toggleMenu() {
               <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                 <RouterLink to="/activity">My Activity</RouterLink>
               </a>
-              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+              <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                 <RouterLink to="/statistics">Statistics</RouterLink>
               </a>
               <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
@@ -34,6 +34,7 @@ function toggleMenu() {
               <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                 <RouterLink to="/peoplesearch">People Search</RouterLink>
               </a>
+              <a class ="text-gray-300 hover:bg-gray-700 hover:text0white rounded-md px-3 py-2 text-sm font-medium"><RouterLink to =/admin>Admin</RouterLink></a>
             </div>
           </div>
         </div>

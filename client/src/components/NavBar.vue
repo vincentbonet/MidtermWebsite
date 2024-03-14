@@ -23,7 +23,7 @@ function toggleMenu() {
                 <RouterLink to="/home">Home</RouterLink>
               </a>
               <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                <RouterLink to="/activity">My Activity</RouterLink>
+                <RouterLink to="/myactivity">My Activity</RouterLink>
               </a>
               <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                 <RouterLink to="/statistics">Statistics</RouterLink>

@@ -4,28 +4,36 @@ export default {
     return {
       users: [
         {
-          picture: 'path-to-image',
-          firstName: 'John',
-          lastName: 'Doe',
-          email: 'john.doe@example.com',
-          handle: 'johndoe',
-          isAdmin: true,
+            picture: 'path-to-image',
+            firstName: 'Robert',
+            lastName: 'Bonet',
+            email: 'robert.bonet@example.com',
+            handle: 'robertbonet',
+            isAdmin: true,
         },
         {
-          picture: 'path-to-image',
-          firstName: 'Jane',
-          lastName: 'Doe',
-          email: 'jane.doe@example.com',
-          handle: 'janedoe',
-          isAdmin: false,
+            picture: 'path-to-image',
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'john.doe@example.com',
+            handle: 'johndoe',
+            isAdmin: false,
         },
         {
-          picture: 'path-to-image',
-          firstName: 'John',
-          lastName: 'Smith',
-          email: 'john.smith@example.com', 
-          handle: 'johnsmith',
-          isAdmin: false,
+            picture: 'path-to-image',
+            firstName: 'John',
+            lastName: 'Smith',
+            email: 'john.smith@example.com', 
+            handle: 'johnsmith',
+            isAdmin: false,
+        },
+        {
+            picture: 'path-to-image',
+            firstName: 'Jane',
+            lastName: 'Smith',
+            email: 'jane.smith@example.com',
+            handle: 'janesmith',
+            isAdmin: false,
         },
       ],
     };
@@ -51,4 +59,9 @@ export default {
   </template>
 
 <style scoped>
+@media (max-width: 640px) {
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
 </style>

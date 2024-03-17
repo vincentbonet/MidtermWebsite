@@ -5,7 +5,7 @@
   <div class="min-h-screen flex items-center justify-center bg-gray-800 py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
       <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-white">Sign up</h2>
+        <h2 class="mt-6 text-center text-3xl font-bold text-white">Sign up</h2>
       </div>
       <form class="mt-8 space-y-6" action="#" method="POST">
         <input type="hidden" name="remember" value="true">

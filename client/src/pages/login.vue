@@ -2,8 +2,8 @@
 </script>
 
 <template>
-    <div class="flex justify-center items-center h-screen bg-primary">
-        <div class="bg-white p-8 rounded shadow-lg">
+  <div class="flex items-center justify-center h-screen bg-gray-800">
+    <div class="bg-gray-200 max-w-7xl px-6 lg:px-8 py-8 rounded-lg shadow-xl mt-24"> 
             <h2 class="text-2xl font-bold mb-4">Login</h2>
             <form>
                 <div class="mb-4">

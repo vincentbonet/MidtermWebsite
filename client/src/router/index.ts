@@ -7,6 +7,7 @@ import statistics from '../pages/statistics.vue';
 import peoplesearch from '../pages/peoplesearch.vue';
 import signup from '../pages/signup.vue';
 import login from '../pages/login.vue';
+import noti from '../pages/noti.vue';
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: login
+  },
+  {
+    path: '/noti',
+    name: 'noti',
+    component: noti
   }
 ];
 

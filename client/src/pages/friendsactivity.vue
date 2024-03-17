@@ -1,7 +1,6 @@
 <template>
   <div class="flex items-center justify-center h-screen">
     <div class="bg-white max-w-7xl px-6 lg:px-8">
-      <!-- FriendForm component for adding workouts -->
       <FriendForm @workoutAdded="addWorkout" />
       
       <div class="text-center">
@@ -17,7 +16,7 @@
 
 <script>
 import { ref } from 'vue';
-import FriendForm from './FriendForm.vue'
+import FriendForm from 'client/src/components/FriendForm.vue'
 
 const workouts = ref([]);
 

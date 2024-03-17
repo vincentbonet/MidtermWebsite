@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang = 'ts'>
 </script>
 <template>
   <div class="flex items-center justify-center h-screen bg-gray-800">
@@ -35,7 +35,4 @@
   </div>
 </template>
 <style scoped>
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
 </style>

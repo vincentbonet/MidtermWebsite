@@ -35,6 +35,7 @@
           <p class="text-gray-500">{{ user.email }}</p>
           <p class="text-gray-500">{{ user.handle }}</p>
           <p class="text-gray-500">{{ user.isAdmin ? 'Administrator' : 'Regular User' }}</p>
+          <EditAndDelete :index="index" @edit="editUser" @delete="deleteUser"/>
         </div>
       </div>
     </div>
@@ -51,7 +52,7 @@ export default {
     return {
       users: [
         {
-            picture: 'path-to-image',
+            picture: '../assets/favicon.ico',
             firstName: 'Robert',
             lastName: 'Bonet',
             email: 'robert.bonet@example.com',
@@ -59,7 +60,7 @@ export default {
             isAdmin: true,
         },
         {
-            picture: 'path-to-image',
+            picture: '../assets/favicon.ico',
             firstName: 'John',
             lastName: 'Doe',
             email: 'john.doe@example.com',
@@ -67,7 +68,7 @@ export default {
             isAdmin: false,
         },
         {
-            picture: 'path-to-image',
+            picture: '../assets/favicon.ico',
             firstName: 'John',
             lastName: 'Smith',
             email: 'john.smith@example.com', 
@@ -75,7 +76,7 @@ export default {
             isAdmin: false,
         },
         {
-            picture: 'path-to-image',
+            picture: '../assets/favicon.ico',
             firstName: 'Jane',
             lastName: 'Smith',
             email: 'jane.smith@example.com',
@@ -94,17 +95,15 @@ export default {
   },
   methods: {
     editUser(index) {
-      const editedUser = {
-        ...this.users[index],
-        picture: 'path-to-image'
-      };
       this.users.splice(index, 1, editedUser);
+      console.log('User edited');
     },
     deleteUser(index) {
       this.users.splice(index, 1);
+      console.log('User deleted');
     },
     addNewUser() {
-      this.users.push({...this.newUser, picture: 'path-to-image'});
+      this.users.push({...this.newUser, picture: '../assets/favicon.ico'});
       this.clearForm();
     },
     clearForm() {
@@ -119,6 +118,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .input-field {
   border: 1px solid rgb(17, 24, 39);

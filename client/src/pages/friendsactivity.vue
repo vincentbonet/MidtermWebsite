@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center h-screen bg-gray-800">
-    <div class="bg-gray-200 max-w-7xl px-6 lg:px-8 py-8 rounded-lg shadow-xl">
+    <div class="bg-gray-200 max-w-7xl px-6 lg:px-8 py-8 rounded-lg shadow-xl mt-24"> <!-- Added mt-24 -->
       <div class="text-center">
         <div v-for="(friend, index) in friends" :key="index" class="mb-8">
           <dt class="text-gray-800 text-lg font-semibold mb-2">Stats for {{ friend.name }} today:</dt>
@@ -29,10 +29,6 @@ const friends = [
     name: 'Mia', 
     today: { miles: 3.8, duration: '1:10' },
   },
-  {
-    name: 'Henry',
-    today: { miles: 4.2, duration: '1:30' },
-  }
 ];
 </script>
 

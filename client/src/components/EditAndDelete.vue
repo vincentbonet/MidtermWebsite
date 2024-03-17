@@ -10,27 +10,19 @@
   <script>
   export default {
     props: {
-      userIndex: {
+      index: {
         type: Number,
-        required: true
-      },
-      editFunction: {
-        type: Function,
-        required: true
-      },
-      deleteFunction: {
-        type: Function,
         required: true
       }
     },
     methods: {
       editUser() {
-        this.editFunction(this.userIndex);
+        this.$emit('edit', this.index);
       },
       deleteUser() {
-        this.deleteFunction(this.userIndex);
+        this.$emit('delete', this.index);
       }
     }
-  }
+  };
   </script>
   

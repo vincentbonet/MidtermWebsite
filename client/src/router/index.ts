@@ -5,6 +5,9 @@ import friendsactivity from '../pages/friendsactivity.vue';
 import myactivity from '../pages/myactivity.vue';
 import statistics from '../pages/statistics.vue';
 import peoplesearch from '../pages/peoplesearch.vue';
+import signup from '../pages/signup.vue';
+import login from '../pages/login.vue';
+
 const routes = [
   {
     path: '/',
@@ -35,12 +38,22 @@ const routes = [
     path: '/peoplesearch',
     name: 'peoplesearch',
     component: peoplesearch
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: signup
+  },
+  {
+    path: 'login',
+    name: 'login',
+    component: login
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(),
   routes
-})
+});
 
 export default router;

@@ -36,7 +36,4 @@ const friends = [
 .bg-gray-200 {
   margin-top: 0;
 }
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
 </style>

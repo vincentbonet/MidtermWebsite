@@ -120,6 +120,10 @@ export default {
 </script>
 
 <style scoped>
+.mt-8{
+  margin-top: 1rem;
+  background-color: rgb(17, 24, 39);
+}
 .input-field {
   border: 1px solid rgb(17, 24, 39);
   padding: 0.5rem;

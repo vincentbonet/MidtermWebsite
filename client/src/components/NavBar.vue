@@ -2,9 +2,15 @@
 import { ref } from 'vue';
 
 let showDropdown = ref(false);
+let isLoggedInAsRobert = ref(false); 
 
 function toggleDropdown() {
   showDropdown.value = !showDropdown.value;
+}
+
+function loggedInAsRobert() {
+  console.log("Logged in as Robert");
+  isLoggedInAsRobert.value = true; 
 }
 </script>
 
@@ -14,14 +20,14 @@ function toggleDropdown() {
       <div class="relative flex h-16 items-center justify-between">
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex flex-shrink-0 items-center">
-            <img class="h-8 w-auto" src= "../assets/favicon.ico "alt="Logo for the Website">
+            <img class="h-8 w-auto" src="../assets/favicon.ico" alt="Logo for the Website">
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
               <a class="bg-gray-800 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page" href="/home">
                 Home
               </a>
-              <a class="text-gray-300 hover:bg-gray-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium" href="/myactivity">
+              <a class="text-gray-300 hover:bg-gray-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium" href="/noti">
                 My Activity
               </a>
               <a class="text-gray-300 hover:bg-gray-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium" href="/statistics">
@@ -33,9 +39,14 @@ function toggleDropdown() {
               <a class="text-gray-300 hover:bg-gray-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium" href="/peoplesearch">
                 People Search
               </a>
-              <a class="text-gray-300 hover:bg-gray-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium" href="/admin">
-                Admin
-              </a>
+              <div class="relative" @mouseover="showAdminDropdown = true" @mouseout="showAdminDropdown = false">
+                <a class="text-gray-300 hover:bg-gray-800 hover:text-white rounded-md px-3 py-2 text-sm font-medium" href="/noti">
+                  Admin
+                </a>
+                <div v-if="showAdminDropdown" class="absolute right-0 mt-2 w-48 bg-gray-900 border rounded-md shadow-lg">
+                  <a href="users" class="block px-4 py-2 text-white hover:bg-gray-800">Users</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -44,19 +55,21 @@ function toggleDropdown() {
             Sign Up
           </a>
           <div class="relative" @mouseover="showDropdown = true" @mouseout="showDropdown = false">
-            <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" @click="toggleDropdown">
+            <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" href="/" @click="toggleDropdown">
               Log In
-            </button>
-            <div v-if="showDropdown" class="absolute right-0 mt-2 w-48 bg-gray-900 border rounded-md shadow-lg" 
-              @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
-              <a href="/admin" class="block px-4 py-2 text-white hover:bg-gray-900">Robert</a>
-              <a href="/login/user2" class="block px-4 py-2 text-white hover:bg-gray-900">Emily</a>
+            </a>
+            <div v-if="showDropdown || isLoggedInAsRobert" class="absolute right-0 top-full mt-2 w-48 bg-gray-900 border rounded-md shadow-lg"
+              @mouseover="showDropdown = true" @mouseout="showDropdown = false">
+              <a href="/admin" class="block px-4 py-2 text-white hover:bg-gray-900" @click.prevent="loggedInAsRobert">Robert</a>
+              <a href="/login" class="block px-4 py-2 text-white hover:bg-gray-900">Emily</a>
             </div>
           </div>
+          <span v-if="isLoggedInAsRobert" class="text-gray-300 text-sm ml-2">Logged in as Robert</span>
         </div>
       </div>
     </div>
   </nav>
 </template>
+
 <style scoped>
 </style>

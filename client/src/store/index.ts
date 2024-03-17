@@ -11,9 +11,11 @@ const store: Store<RootState> = createStore<RootState>({
   mutations: {
     loginAsRobert(state) {
       state.isLoggedInAsRobert = true;
+      localStorage.setItem('isLoggedInAsRobert', 'true');
     },
     logout(state) {
       state.isLoggedInAsRobert = false;
+      localStorage.removeItem('isLoggedInAsRobert');
     },
   },
   actions: {
@@ -21,5 +23,10 @@ const store: Store<RootState> = createStore<RootState>({
   modules: {
   },
 });
+
+const loggedIn = localStorage.getItem('isLoggedInAsRobert');
+if (loggedIn !== null) {
+  store.commit('loginAsRobert');
+}
 
 export default store;

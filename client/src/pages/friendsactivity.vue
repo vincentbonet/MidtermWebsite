@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center h-screen bg-gray-800">
-    <div class="bg-gray-200 max-w-7xl px-6 lg:px-8 py-8 rounded-lg shadow-xl mt-24"> <!-- Added mt-24 -->
+    <div class="bg-gray-200 max-w-7xl px-6 lg:px-8 py-8 rounded-lg shadow-xl mt-24"> 
       <div class="text-center">
         <div v-for="(friend, index) in friends" :key="index" class="mb-8">
           <dt class="text-gray-800 text-lg font-semibold mb-2">Stats for {{ friend.name }} today:</dt>
@@ -33,6 +33,9 @@ const friends = [
 </script>
 
 <style scoped>
+.bg-gray-200 {
+  margin-top: 0;
+}
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';

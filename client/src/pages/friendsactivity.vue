@@ -1,26 +1,46 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+const workouts = ref([]);
+
+</script>
+
 <template>
-  <div class="flex items-center justify-center h-screen">
-    <div class="bg-white max-w-7xl px-6 lg:px-8">
-      <FriendForm @workoutAdded="addWorkout" />
-      
+  <div class="flex items-center justify-center h-screen bg-gray-900">
+    <div class="bg-gray-800 max-w-7xl px-6 lg:px-8 py-8 rounded-lg shadow-xl">
       <div class="text-center">
-        <div v-for="(workout, index) in workouts" :key="index" class="mb-8">
-          <dt class="text-base leading-7 text-gray-900">{{ `Stats for ${workout.name} today:` }}</dt>
-          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">{{ `${workout.distance} miles` }}</dd>
-          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">{{ `${workout.duration} duration (hours:min)` }}</dd>
+        <!-- Statistics for Emily -->
+        <div v-for="workout in workouts" :key="workout.name" v-if="workout.name === 'Emily'" class="mb-8">
+          <dt class="text-gray-200 text-lg font-semibold mb-2">Stats for {{ workout.name }} today:</dt>
+          <div class="flex justify-center items-center">
+            <div class="text-4xl font-bold text-white mr-2">{{ workout.distance }}</div>
+            <div class="text-sm text-gray-400">miles</div>
+          </div>
+          <div class="text-gray-400 text-sm">Duration: {{ workout.duration }}</div>
+        </div>
+
+        <!-- Statistics for Nita -->
+        <div v-for="workout in workouts" :key="workout.name" v-if="workout.name === 'Nita'" class="mb-8">
+          <dt class="text-gray-200 text-lg font-semibold mb-2">Stats for {{ workout.name }} today:</dt>
+          <div class="flex justify-center items-center">
+            <div class="text-4xl font-bold text-white mr-2">{{ workout.distance }}</div>
+            <div class="text-sm text-gray-400">miles</div>
+          </div>
+          <div class="text-gray-400 text-sm">Duration: {{ workout.duration }}</div>
+        </div>
+
+        <!-- Statistics for Chico -->
+        <div v-for="workout in workouts" :key="workout.name" v-if="workout.name === 'Chico'" class="mb-8">
+          <dt class="text-gray-200 text-lg font-semibold mb-2">Stats for {{ workout.name }} today:</dt>
+          <div class="flex justify-center items-center">
+            <div class="text-4xl font-bold text-white mr-2">{{ workout.distance }}</div>
+            <div class="text-sm text-gray-400">miles</div>
+          </div>
+          <div class="text-gray-400 text-sm">Duration: {{ workout.duration }}</div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
-import FriendForm from 'client/src/components/FriendForm.vue'
-
-const workouts = ref([]);
-
-const addWorkout = (newWorkout) => {
-  workouts.unshift({ ...newWorkout });
-};
-</script>
+<style scoped>
+</style>

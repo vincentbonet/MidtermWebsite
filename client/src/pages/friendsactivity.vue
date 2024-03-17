@@ -20,7 +20,7 @@
 <script setup lang="ts">
 const friends = [
   { 
-    name: 'Robert', 
+    name: 'Henry', 
     today: { miles: 1.3, duration: '0:21' },
   },
   { 

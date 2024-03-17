@@ -52,7 +52,7 @@ export default {
     return {
       users: [
         {
-            picture: '../assets/favicon.ico',
+            picture: '',
             firstName: 'Robert',
             lastName: 'Bonet',
             email: 'robert.bonet@example.com',
@@ -60,7 +60,7 @@ export default {
             isAdmin: true,
         },
         {
-            picture: '../assets/favicon.ico',
+            picture: '',
             firstName: 'John',
             lastName: 'Doe',
             email: 'john.doe@example.com',
@@ -68,7 +68,7 @@ export default {
             isAdmin: false,
         },
         {
-            picture: '../assets/favicon.ico',
+            picture: '',
             firstName: 'John',
             lastName: 'Smith',
             email: 'john.smith@example.com', 
@@ -76,7 +76,7 @@ export default {
             isAdmin: false,
         },
         {
-            picture: '../assets/favicon.ico',
+            picture: '',
             firstName: 'Jane',
             lastName: 'Smith',
             email: 'jane.smith@example.com',

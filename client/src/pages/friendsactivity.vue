@@ -15,9 +15,9 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import { ref } from 'vue';
-import FriendForm from './FriendForm.vue';
+import FriendForm from './FriendForm.vue'
 
 const workouts = ref([]);
 

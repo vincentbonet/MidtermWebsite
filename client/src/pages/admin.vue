@@ -1,40 +1,37 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen">
+  <div class="flex items-center justify-center min-h-screen bg-gray-800 text-gray-200 mt-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-screen-lg">
-      <!-- Form to add a new user -->
-      <div class="bg-white p-4 shadow-md rounded-md">
+      <div class="bg-gray-900 p-6 shadow-md rounded-md"> 
         <h2 class="text-xl font-semibold mb-4">Add New User</h2>
         <form @submit.prevent="addNewUser" class="space-y-4">
-          <div>
-            <label for="firstName" class="block font-semibold">First Name:</label>
-            <input type="text" v-model="newUser.firstName" id="firstName" class="input-field">
+          <div class="flex flex-col">
+            <label for="firstName" class="font-semibold mb-1">First Name:</label>
+            <input type="text" v-model.trim="newUser.firstName" id="firstName" class="input-field bg-gray-800 text-gray-200"> 
           </div>
-          <div>
-            <label for="lastName" class="block font-semibold">Last Name:</label>
-            <input type="text" v-model="newUser.lastName" id="lastName" class="input-field">
+          <div class="flex flex-col">
+            <label for="lastName" class="font-semibold mb-1">Last Name:</label>
+            <input type="text" v-model.trim="newUser.lastName" id="lastName" class="input-field bg-gray-800 text-gray-200"> 
           </div>
-          <div>
-            <label for="email" class="block font-semibold">Email:</label>
-            <input type="email" v-model="newUser.email" id="email" class="input-field">
+          <div class="flex flex-col">
+            <label for="email" class="font-semibold mb-1">Email:</label>
+            <input type="email" v-model.trim="newUser.email" id="email" class="input-field bg-gray-800 text-gray-200"> 
           </div>
-          <div>
-            <label for="handle" class="block font-semibold">Handle:</label>
-            <input type="text" v-model="newUser.handle" id="handle" class="input-field">
+          <div class="flex flex-col">
+            <label for="handle" class="font-semibold mb-1">Handle:</label>
+            <input type="text" v-model.trim="newUser.handle" id="handle" class="input-field bg-gray-800 text-gray-200"> 
           </div>
-          <div>
-            <label for="isAdmin" class="block font-semibold">Is Admin:</label>
-            <input type="checkbox" v-model="newUser.isAdmin" id="isAdmin">
+          <div class="flex items-center">
+            <input type="checkbox" v-model="newUser.isAdmin" id="isAdmin" class="mr-2">
+            <label for="isAdmin" class="text-sm">Is Admin</label>
           </div>
           <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add User</button>
         </form>
       </div>
 
-      <!-- Display existing users -->
-      <div v-for="(user, index) in users" :key="index" class="bg-white p-4 shadow-md rounded-md">
+      <div v-for="(user, index) in users" :key="index" class="bg-gray-900 p-6 shadow-md rounded-md"> 
         <img :src="user.picture" :alt="`${user.firstName} ${user.lastName}'s Profile Picture`" class="w-16 h-16 rounded-full mx-auto mb-4">
-        <div class="text-center">
-          <p class="text-lg font-semibold">{{ user.firstName }}</p>
-          <p class="text-lg font-semibold">{{ user.lastName }}</p>
+        <div class="text-center space-y-2"> 
+          <p class="text-lg font-semibold">{{ user.firstName }} {{ user.lastName }}</p>
           <p class="text-gray-500">{{ user.email }}</p>
           <p class="text-gray-500">{{ user.handle }}</p>
           <p class="text-gray-500">{{ user.isAdmin ? 'Administrator' : 'Regular User' }}</p>
@@ -45,7 +42,11 @@
 </template>
 
 <script>
+import EditAndDelete from '../components/EditAndDelete.vue';
 export default {
+  components: {
+    EditAndDelete
+  },
   data() {
     return {
       users: [
@@ -92,10 +93,15 @@ export default {
     };
   },
   methods: {
+    editUser(index) {
+      const editedUser;
+      this.users.splice(index, 1, editedUser);
+    },
+    deleteUser(index) {
+      this.users.splice(index, 1);
+    },
     addNewUser() {
-      // Add validation logic if required
       this.users.push({...this.newUser, picture: 'path-to-image'});
-      // Clear the form after adding user
       this.clearForm();
     },
     clearForm() {
@@ -113,7 +119,7 @@ export default {
 
 <style scoped>
 .input-field {
-  border: 1px solid #ccc;
+  border: 1px solid rgb(17, 24, 39);
   padding: 0.5rem;
   width: 100%;
 }

@@ -27,19 +27,22 @@
           <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add User</button>
         </form>
       </div>
-
-      <div v-for="(user, index) in users" :key="index" class="bg-gray-900 p-6 shadow-md rounded-md"> 
+  <div class="flex items-center justify-center min-h-screen bg-gray-800 text-gray-200 mt-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-screen-lg">
+      <div v-for="(user, index) in users" :key="index" class="bg-gray-900 p-6 shadow-md rounded-md relative">
         <img :src="user.picture" :alt="`${user.firstName} ${user.lastName}'s Profile Picture`" class="w-16 h-16 rounded-full mx-auto mb-4">
         <div class="text-center space-y-2"> 
           <p class="text-lg font-semibold">{{ user.firstName }} {{ user.lastName }}</p>
           <p class="text-gray-500">{{ user.email }}</p>
           <p class="text-gray-500">{{ user.handle }}</p>
           <p class="text-gray-500">{{ user.isAdmin ? 'Administrator' : 'Regular User' }}</p>
-          <EditAndDelete :index="index" @edit="editUser" @delete="deleteUser"/>
+          <EditAndDelete :index="index" @edit="editUser" @delete="deleteUser" class="absolute bottom-0 left-0 right-0 flex justify-center pb-4"></EditAndDelete>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -84,13 +87,6 @@ export default {
             isAdmin: false,
         },
       ],
-      newUser: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        handle: '',
-        isAdmin: false
-      }
     };
   },
   methods: {
@@ -102,19 +98,6 @@ export default {
       this.users.splice(index, 1);
       console.log('User deleted');
     },
-    addNewUser() {
-      this.users.push({...this.newUser, picture: '../assets/favicon.ico'});
-      this.clearForm();
-    },
-    clearForm() {
-      this.newUser = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        handle: '',
-        isAdmin: false
-      };
-    }
   }
 };
 </script>
@@ -123,10 +106,5 @@ export default {
 .mt-8{
   margin-top: 1rem;
   background-color: rgb(17, 24, 39);
-}
-.input-field {
-  border: 1px solid rgb(17, 24, 39);
-  padding: 0.5rem;
-  width: 100%;
 }
 </style>

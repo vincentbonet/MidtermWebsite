@@ -1,4 +1,3 @@
-// store/index.ts
 import { createStore, Store } from 'vuex';
 
 interface RootState {

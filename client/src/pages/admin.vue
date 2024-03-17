@@ -94,7 +94,10 @@ export default {
   },
   methods: {
     editUser(index) {
-      const editedUser;
+      const editedUser = {
+        ...this.users[index],
+        picture: 'path-to-image'
+      };
       this.users.splice(index, 1, editedUser);
     },
     deleteUser(index) {
@@ -116,7 +119,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .input-field {
   border: 1px solid rgb(17, 24, 39);

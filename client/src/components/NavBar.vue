@@ -10,27 +10,27 @@
         </div>
         <div class="hidden sm:block">
           <div class="flex space-x-5">
-            <router-link :to="myActivityLink" class="nav-link">My Activity</router-link>
-            <router-link to="/statistics" class="nav-link">Statistics</router-link>
-            <router-link to="/friendsactivity" class="nav-link">Friends Activity</router-link>
-            <router-link to="/peoplesearch" class="nav-link">People Search</router-link>
-            <router-link :to="adminLink" class="nav-link">Admin</router-link>
+            <a :to="myActivityLink" class="nav-link">My Activity</a>
+            <a to="/statistics" class="nav-link">Statistics</a>
+            <a to="/friendsactivity" class="nav-link">Friends Activity</a>
+            <a to="/peoplesearch" class="nav-link">People Search</a>
+            <a :to="adminLink" class="nav-link">Admin</a>
           </div>
         </div>
         <div class="flex items-center">
-          <router-link v-if="!isLoggedIn" to="/signup" class="nav-link">Sign Up</router-link>
+          <a v-if="!isLoggedIn" to="/signup" class="nav-link">Sign Up</a>
           <div v-if="!isLoggedIn">
             <div class="relative" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
               <a class="nav-link" @click="toggleDropdown">Log in</a>
               <div v-if="showDropdown" class="absolute right-0 top-full mt-2 w-48 bg-gray-900 border rounded-md shadow-lg" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
                 <a @click="loginAsRobert" class="block px-4 py-2 text-white hover:bg-gray-800">Log in as Robert</a>
-                <router-link to="/login" class="block px-4 py-2 text-white hover:bg-gray-800">Log in as other user</router-link>
+                <a to="/login" class="block px-4 py-2 text-white hover:bg-gray-800">Log in as other user</a>
               </div>
             </div>
           </div>
           <div v-else>
             <span class="text-white mr-2">Logged in as Robert</span>
-            <router-link @click="logout" class="nav-link">Log out</router-link>
+            <a @click="logout" class="nav-link">Log out</a>
           </div>
         </div>
       </div>

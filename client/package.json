@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "tailwind": "^3.0.0",
     "@vue/compiler-sfc": "^3.4.21",
     "vue": "^3.4.19",
     "vue-router": "^4.3.0",

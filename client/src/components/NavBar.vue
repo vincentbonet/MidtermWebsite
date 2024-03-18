@@ -18,13 +18,13 @@
           </div>
         </div>
         <div class="flex items-center">
-          <a v-if="!isLoggedIn" to="/signup" class="nav-link">Sign Up</a>
+          <router-link v-if="!isLoggedIn" to="/signup" class="nav-link">Sign Up</router-link>
           <div v-if="!isLoggedIn">
             <div class="relative" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
               <a class="nav-link" @click="toggleDropdown">Log in</a>
               <div v-if="showDropdown" class="absolute right-0 top-full mt-2 w-48 bg-gray-900 border rounded-md shadow-lg" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
                 <a @click="loginAsRobert" class="block px-4 py-2 text-white hover:bg-gray-800">Log in as Robert</a>
-                <a to="/login" class="block px-4 py-2 text-white hover:bg-gray-800">Log in as other user</a>
+                <router-link to="/login" class="block px-4 py-2 text-white hover:bg-gray-800">Log in as other user</router-link>
               </div>
             </div>
           </div>

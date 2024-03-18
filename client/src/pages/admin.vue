@@ -64,6 +64,14 @@ export default {
           handle: 'emilypickering',
           isAdmin: false,
         },
+        {
+          picture: '',
+          firstName: 'Henry',
+          lastName: 'Becker',
+          email: 'henry.becker@example.com',
+          handle: 'henrybecker',
+          isAdmin: false,
+        },
       ],
       newUser: {
         firstName: '',

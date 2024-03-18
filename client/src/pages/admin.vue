@@ -36,9 +36,11 @@
       </div>
     </div>
   </div>
+  <Footer />
 </template>
 
 <script>
+import Footer from '../components/Footer.vue';
 import EditAndDelete from '../components/EditAndDelete.vue';
 import profile1 from '../assets/profile1.jpg';
 import profile2 from '../assets/profile2.jpg';

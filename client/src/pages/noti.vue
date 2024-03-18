@@ -1,4 +1,5 @@
 <script setup lang = "ts" >
+import Footer from '../components/Footer.vue'
 </script>
 <template>
   <div class="flex items-center justify-center h-screen bg-gray-800">
@@ -7,6 +8,7 @@
       <h2 class="text-lg text-gray-200 mb-8">To access this page, you first need to Login on the top right.</h2>
     </div>
   </div>
+  <Footer />
 </template>
 
 <style scoped>

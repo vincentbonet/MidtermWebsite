@@ -12,7 +12,7 @@
           <div class="flex space-x-5">
             <router-link :to="myActivityLink" class="nav-link">My Activity</router-link>
             <router-link to="/statistics" class="nav-link">Statistics</router-link>
-            <router-link to="/friendsactivity" class="nav-link">Friends Activity</router-link>
+            <router-link :to="friendsLink" class="nav-link">Friends Activity</router-link>
             <router-link to="/peoplesearch" class="nav-link">People Search</router-link>
             <router-link :to="adminLink" class="nav-link">Admin</router-link>
           </div>
@@ -28,15 +28,17 @@
               </div>
             </div>
           </div>
-          <div v-else>
+          <div v-else class="flex items-center">
             <span class="text-white mr-2">Logged in as Robert</span>
-            <a @click="logout" class="nav-link">Log out</a>
+            <img src="../assets/profile1.jpg" alt="robertprofile" class="h-8 w-8 rounded-full">
+            <a @click="logout" class="nav-link ml-4">Log out</a>
           </div>
         </div>
       </div>
     </div>
   </nav>
 </template>
+
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
@@ -54,6 +56,7 @@ function logout() {
 }
 
 const isLoggedIn = computed(() => store.state.isLoggedInAsRobert);
+const friendsLink = computed(() => isLoggedIn.value ? '/friendsactivity': '/noti')
 const myActivityLink = computed(() => isLoggedIn.value ? '/myactivity' : '/noti');
 const adminLink = computed(() => isLoggedIn.value ? '/admin' : '/noti');
 </script>

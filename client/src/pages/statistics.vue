@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import Footer from '../components/Footer.vue'
 </script>
 
 <template>
@@ -9,6 +9,7 @@
         <h2 class="text-lg text-gray-200 mb-8">You don't need to provide a comprehensive statistics page, the home page will do.</h2>
       </div>
     </div>
+    <Footer />
 </template>
 
 <style scoped>

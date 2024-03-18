@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-800 text-gray-200 ">
+  <div class="flex items-center justify-center min-h-screen bg-gray-800 text-gray-200">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-screen-lg">
       <div class="bg-gray-700 p-6 shadow-md rounded-md"> 
         <h2 class="text-xl font-semibold mb-4">Add New User</h2>
@@ -25,7 +25,7 @@
       </div>
       
       <div v-for="(user, index) in users" :key="index" class="bg-gray-900 p-6 shadow-md rounded-md relative">
-        <img :src="user.picture || ''" :alt="`${user.firstName || ''} ${user.lastName || ''}'s Profile Picture`" class="w-16 h-16 rounded-full mx-auto mb-4">
+        <img :src="getUserPicture(user.picture)" :alt="`${user.firstName || ''} ${user.lastName || ''}'s Profile Picture`" class="w-16 h-16 rounded-full mx-auto mb-4">
         <div class="text-center space-y-2"> 
           <p class="text-lg font-semibold">{{ user.firstName || 'Unknown' }} {{ user.lastName || 'User' }}</p>
           <p class="text-gray-500">{{ user.email || 'N/A' }}</p>
@@ -40,6 +40,9 @@
 
 <script>
 import EditAndDelete from '../components/EditAndDelete.vue';
+import profile1 from '../assets/profile1.jpg';
+import profile2 from '../assets/profile2.jpg';
+import profile3 from '../assets/profile3.jpg';
 
 export default {
   components: {
@@ -49,7 +52,7 @@ export default {
     return {
       users: [
         {
-          picture: 'client/src/assets/profile1.jpg',
+          picture: profile1,
           firstName: 'Robert',
           lastName: 'Bonet',
           email: 'robert.bonet@example.com',
@@ -57,7 +60,7 @@ export default {
           isAdmin: true,
         },
         {
-          picture: 'client/src/assets/profile2.jpg',
+          picture: profile2,
           firstName: 'Emily',
           lastName: 'Pickering',
           email: 'emily.pickering@example.com',
@@ -65,7 +68,7 @@ export default {
           isAdmin: false,
         },
         {
-          picture: 'client/src/assets/profile3.jpg',
+          picture: profile3,
           firstName: 'Henry',
           lastName: 'Becker',
           email: 'henry.becker@example.com',
@@ -102,6 +105,9 @@ export default {
       this.users.splice(index, 1);
       console.log('User deleted');
     },
+    getUserPicture(picture) {
+      return picture;
+    }
   }
 };
 </script>

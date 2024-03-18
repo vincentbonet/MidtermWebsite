@@ -27,10 +27,6 @@ const friends = [
     name: 'Emily', 
     today: { miles: 2.5, duration: '0:45' },
   },
-  { 
-    name: 'Mia', 
-    today: { miles: 3.8, duration: '1:10' },
-  },
 ];
 </script>
 

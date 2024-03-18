@@ -43,8 +43,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import {useStore} from 'vuex';
+import { ref, watch, computed  } from 'vue';
+import { useStore } from 'vuex';
 let showDropdown = ref(false);
 let showAdminDropdown = ref(false);
 const store = useStore();
@@ -52,16 +52,21 @@ const store = useStore();
 function login(){
   store.commit('loginAsRobert');
 }
-function logout(){
+function logout() {
   store.commit('logout');
 }
 
 const isLoggedInAsRobert = store.state.isLoggedInAsRobert;
 
+const loginText = computed(() => {
+  return isLoggedInAsRobert ? 'My Activity' : 'Log In';
+});
+const loginLink = computed(() => {
+  return isLoggedInAsRobert ? '/myactivity' : '/login';
+});
 function toggleDropdown() {
   showDropdown.value = !showDropdown.value;
 }
-
 </script>
 
 <style scoped>

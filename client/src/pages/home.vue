@@ -19,7 +19,7 @@
             <div class="text-5xl font-bold text-gray-800 mr-2">0</div>
             <div class="text-sm text-gray-600">miles</div>
           </div>
-          <div class="text-gray-600 text-sm">Duration: 1:54 (min:hours)</div>
+          <div class="text-gray-600 text-sm">Duration: 0 (min:hours)</div>
         </div>
 
         <div class="mb-8">

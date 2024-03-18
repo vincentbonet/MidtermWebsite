@@ -38,4 +38,5 @@ const friends = [
 .bg-gray-200 {
   margin-top: 0;
 }
+
 </style>

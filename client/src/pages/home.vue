@@ -33,6 +33,14 @@
       </div>
     </div>
   </div>
+  <div>
+    <footer>
+      <footer class="bg-gray-800 text-white text-center py-4">
+        <p>© 2024 Building Better. All rights reserved.</p>
+        <p>Built by Robert Bonet, Hosted on Render.</p>
+      </footer>
+    </footer>
+  </div>
 </template>
 <style scoped>
 </style>

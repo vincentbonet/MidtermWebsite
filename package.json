@@ -1,0 +1,19 @@
+{
+    "name": "@myusername/midterm-website-1",
+    "version": "1.0.0",
+    "description": "Midterm Website 1",
+    "author": "",
+    "license": "Apache-2.0",
+    "scripts": {
+      "start": "node server/index.js",
+      "dev": "nodemon server/index.js --watch server/"
+    },
+    "dependencies": {
+      "dayjs": "^1.11.10",
+      "express": "^4.18.2"
+    },
+    "devDependencies": {
+      "nodemon": "^3.0.3"
+    }
+  
+  }

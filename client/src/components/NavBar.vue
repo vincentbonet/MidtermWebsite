@@ -10,25 +10,27 @@
         </div>
         <div class="hidden sm:block">
           <div class="flex space-x-5">
-            <a class="nav-link" href="/noti">My Activity</a>
-            <a class="nav-link" href="/statistics">Statistics</a>
-            <a class="nav-link" href="/friendsactivity">Friends Activity</a>
-            <a class="nav-link" href="/peoplesearch">People Search</a>
-            <a class="nav-link" href="/noti">Admin</a>
+            <router-link :to="myActivityLink" class="nav-link">My Activity</router-link>
+            <router-link to="/statistics" class="nav-link">Statistics</router-link>
+            <router-link to="/friendsactivity" class="nav-link">Friends Activity</router-link>
+            <router-link to="/peoplesearch" class="nav-link">People Search</router-link>
+            <router-link :to="adminLink" class="nav-link">Admin</router-link>
           </div>
         </div>
         <div class="flex items-center">
-          <a href="/signup" class="nav-link">Sign Up</a>
-          <div class="relative" @mouseover="showDropdown = true" @mouseleave="showDropdown = false" v-if="!isLoggedInAsRobert">
-            <a class="nav-link" @click="toggleDropdown">{{ loginText }}</a>
-            <div v-if="showDropdown" class="absolute right-0 top-full mt-2 w-48 bg-gray-900 border rounded-md shadow-lg" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
-              <a :href="userLink" class="block px-4 py-2 text-white hover:bg-gray-800" @click.prevent="login">Log in as Robert</a>
-              <a href="/login" class="block px-4 py-2 text-white hover:bg-gray-800">Log in as other user</a>
+          <router-link v-if="!isLoggedIn" to="/signup" class="nav-link">Sign Up</router-link>
+          <div v-if="!isLoggedIn">
+            <div class="relative" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
+              <a class="nav-link" @click="toggleDropdown">Log in</a>
+              <div v-if="showDropdown" class="absolute right-0 top-full mt-2 w-48 bg-gray-900 border rounded-md shadow-lg" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
+                <a @click="loginAsRobert" class="block px-4 py-2 text-white hover:bg-gray-800">Log in as Robert</a>
+                <router-link to="/login" class="block px-4 py-2 text-white hover:bg-gray-800">Log in as other user</router-link>
+              </div>
             </div>
           </div>
           <div v-else>
             <span class="text-white mr-2">Logged in as Robert</span>
-            <a class="nav-link" @click="logout">Log out</a>
+            <router-link @click="logout" class="nav-link">Log out</router-link>
           </div>
         </div>
       </div>
@@ -41,21 +43,19 @@ import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 
 let showDropdown = ref(false);
-let showAdminDropdown = ref(false);
 const store = useStore();
 
-function login() {
+function loginAsRobert() {
   store.commit('loginAsRobert');
 }
 
-const isLoggedInAsRobert = store.state.isLoggedInAsRobert;
-
-function toggleDropdown() {
-  showDropdown.value = !showDropdown.value;
+function logout() {
+  store.commit('logout');
 }
 
-const userLink = computed(() => isLoggedInAsRobert ? '/admin' : '/login');
-const loginText = computed(() => isLoggedInAsRobert ? 'Logged in as Robert' : 'Log in');
+const isLoggedIn = computed(() => store.state.isLoggedInAsRobert);
+const myActivityLink = computed(() => isLoggedIn.value ? '/myactivity' : '/noti');
+const adminLink = computed(() => isLoggedIn.value ? '/admin' : '/noti');
 </script>
 
 <style scoped>

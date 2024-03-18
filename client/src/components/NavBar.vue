@@ -23,6 +23,7 @@
           </div>
         </div>
         <div class="flex items-center">
+          <a href = "/signup" class="nav-link">Sign Up</a>
           <div class="relative" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
             <div v-if="!isLoggedInAsRobert || showDropdown">
               <a class="nav-link" @click="toggleDropdown">Log In</a>

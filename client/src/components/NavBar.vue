@@ -10,11 +10,11 @@
         </div>
         <div class="hidden sm:block">
           <div class="flex space-x-5">
-            <a :to="myActivityLink" class="nav-link">My Activity</a>
-            <a to="/statistics" class="nav-link">Statistics</a>
-            <a to="/friendsactivity" class="nav-link">Friends Activity</a>
-            <a to="/peoplesearch" class="nav-link">People Search</a>
-            <a :to="adminLink" class="nav-link">Admin</a>
+            <router-link :to="myActivityLink" class="nav-link">My Activity</router-link>
+            <router-link to="/statistics" class="nav-link">Statistics</router-link>
+            <router-link to="/friendsactivity" class="nav-link">Friends Activity</router-link>
+            <router-link to="/peoplesearch" class="nav-link">People Search</router-link>
+            <router-link :to="adminLink" class="nav-link">Admin</router-link>
           </div>
         </div>
         <div class="flex items-center">

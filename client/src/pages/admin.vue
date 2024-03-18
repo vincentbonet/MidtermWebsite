@@ -49,7 +49,7 @@ export default {
     return {
       users: [
         {
-          picture: '',
+          picture: 'client/src/assets/profile1.jpg',
           firstName: 'Robert',
           lastName: 'Bonet',
           email: 'robert.bonet@example.com',
@@ -57,7 +57,7 @@ export default {
           isAdmin: true,
         },
         {
-          picture: '',
+          picture: 'client/src/assets/profile2.jpg',
           firstName: 'Emily',
           lastName: 'Pickering',
           email: 'emily.pickering@example.com',
@@ -65,7 +65,7 @@ export default {
           isAdmin: false,
         },
         {
-          picture: '',
+          picture: 'client/src/assets/profile3.jpg',
           firstName: 'Henry',
           lastName: 'Becker',
           email: 'henry.becker@example.com',

@@ -55,6 +55,10 @@ function logout() {
   store.commit('logout');
 }
 
+function toggleDropdown() {
+  showDropdown.value = !showDropdown.value;
+  }
+
 const isLoggedIn = computed(() => store.state.isLoggedInAsRobert);
 const friendsLink = computed(() => isLoggedIn.value ? '/friendsactivity': '/noti')
 const myActivityLink = computed(() => isLoggedIn.value ? '/myactivity' : '/noti');

@@ -1,27 +1,40 @@
 <template>
-  <div class="flex items-center justify-center h-screen">
-    <div class="bg-white max-w-7xl px-6 lg:px-8">
-      <!-- FriendForm component for adding workouts -->
-      <FriendForm @workoutAdded="addWorkout" />
-      
+  <NewUser />
+  <UserForm />
+  <div class="flex items-center justify-center h-screen bg-gray-800">
+    <div class="bg-gray-200 max-w-7xl px-6 lg:px-8 py-8 rounded-lg shadow-xl mt-24"> 
       <div class="text-center">
-        <div v-for="(workout, index) in workouts" :key="index" class="mb-8">
-          <dt class="text-base leading-7 text-gray-900">{{ `Stats for ${workout.name} today:` }}</dt>
-          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">{{ `${workout.distance} miles` }}</dd>
-          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">{{ `${workout.duration} duration (hours:min)` }}</dd>
+        <div v-for="(friend, index) in friends" :key="index" class="mb-8">
+          <dt class="text-gray-800 text-lg font-semibold mb-2">Stats for {{ friend.name }} today:</dt>
+          <div class="flex justify-center items-center">
+            <div class="text-5xl font-bold text-gray-800 mr-2">{{ friend.today.miles }}</div>
+            <div class="text-sm text-gray-600">miles</div>
+          </div>
+          <div class="text-gray-600 text-sm">Duration: {{ friend.today.duration }} (min:hours)</div>
         </div>
       </div>
     </div>
   </div>
+  <Footer />
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import FriendForm from './FriendForm.vue';
-
-const workouts = ref([]);
-
-const addWorkout = (newWorkout) => {
-  workouts.unshift({ ...newWorkout });
-};
+<script setup lang="ts">
+import Footer from '../components/Footer.vue';
+const friends = [
+  { 
+    name: 'Henry', 
+    today: { miles: 1.3, duration: '0:21' },
+  },
+  { 
+    name: 'Emily', 
+    today: { miles: 2.5, duration: '0:45' },
+  },
+];
 </script>
+
+<style scoped>
+.bg-gray-200 {
+  margin-top: 0;
+}
+
+</style>

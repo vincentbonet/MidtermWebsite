@@ -1,85 +1,81 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen">
+  <div class="flex items-center justify-center min-h-screen bg-gray-800 text-gray-200">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-screen-lg">
-      <!-- Form to add a new user -->
-      <div class="bg-white p-4 shadow-md rounded-md">
+      <div class="bg-gray-700 p-6 shadow-md rounded-md"> 
         <h2 class="text-xl font-semibold mb-4">Add New User</h2>
         <form @submit.prevent="addNewUser" class="space-y-4">
-          <div>
-            <label for="firstName" class="block font-semibold">First Name:</label>
-            <input type="text" v-model="newUser.firstName" id="firstName" class="input-field">
-          </div>
-          <div>
-            <label for="lastName" class="block font-semibold">Last Name:</label>
-            <input type="text" v-model="newUser.lastName" id="lastName" class="input-field">
-          </div>
-          <div>
-            <label for="email" class="block font-semibold">Email:</label>
-            <input type="email" v-model="newUser.email" id="email" class="input-field">
-          </div>
-          <div>
-            <label for="handle" class="block font-semibold">Handle:</label>
-            <input type="text" v-model="newUser.handle" id="handle" class="input-field">
-          </div>
-          <div>
-            <label for="isAdmin" class="block font-semibold">Is Admin:</label>
-            <input type="checkbox" v-model="newUser.isAdmin" id="isAdmin">
+          <div class="flex flex-col">
+            <label for="firstName" class="font-semibold mb-1 text-center">First Name:</label>
+            <input type="text" v-model.trim="newUser.firstName" id="firstName" class="input-field bg-gray-800 text-gray-200">
+
+            <label for="lastName" class="font-semibold mb-1 text-center">Last Name:</label>
+            <input type="text" v-model.trim="newUser.lastName" id="lastName" class="input-field bg-gray-800 text-gray-200">
+
+            <label for="email" class="font-semibold mb-1 text-center">Email:</label>
+            <input type="email" v-model.trim="newUser.email" id="email" class="input-field bg-gray-800 text-gray-200">
+
+            <label for="handle" class="font-semibold mb-1 text-center">Handle:</label>
+            <input type="text" v-model.trim="newUser.handle" id="handle" class="input-field bg-gray-800 text-gray-200">
+
+            <label for="isAdmin" class="font-semibold mb-1 text-center">Admin:</label>
+            <input type="checkbox" v-model="newUser.isAdmin" id="isAdmin" class="input-field bg-gray-800 text-gray-200 ml-1">
           </div>
           <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Add User</button>
         </form>
       </div>
-
-      <!-- Display existing users -->
-      <div v-for="(user, index) in users" :key="index" class="bg-white p-4 shadow-md rounded-md">
-        <img :src="user.picture" :alt="`${user.firstName} ${user.lastName}'s Profile Picture`" class="w-16 h-16 rounded-full mx-auto mb-4">
-        <div class="text-center">
-          <p class="text-lg font-semibold">{{ user.firstName }}</p>
-          <p class="text-lg font-semibold">{{ user.lastName }}</p>
-          <p class="text-gray-500">{{ user.email }}</p>
-          <p class="text-gray-500">{{ user.handle }}</p>
+      
+      <div v-for="(user, index) in users" :key="index" class="bg-gray-900 p-6 shadow-md rounded-md relative">
+        <img :src="getUserPicture(user.picture)" :alt="`${user.firstName || ''} ${user.lastName || ''}'s Profile Picture`" class="w-16 h-16 rounded-full mx-auto mb-4">
+        <div class="text-center space-y-2"> 
+          <p class="text-lg font-semibold">{{ user.firstName || 'Unknown' }} {{ user.lastName || 'User' }}</p>
+          <p class="text-gray-500">{{ user.email || 'N/A' }}</p>
+          <p class="text-gray-500">{{ user.handle || 'N/A' }}</p>
           <p class="text-gray-500">{{ user.isAdmin ? 'Administrator' : 'Regular User' }}</p>
+          <EditAndDelete :index="index" @edit="editUser" @delete="deleteUser" class="absolute bottom-0 left-0 right-0 flex justify-center pb-4"></EditAndDelete>
         </div>
       </div>
     </div>
   </div>
+  <Footer />
 </template>
 
 <script>
+import Footer from '../components/Footer.vue';
+import EditAndDelete from '../components/EditAndDelete.vue';
+import profile1 from '../assets/profile1.jpg';
+import profile2 from '../assets/profile2.jpg';
+import profile3 from '../assets/profile3.jpg';
+
 export default {
+  components: {
+    EditAndDelete
+  },
   data() {
     return {
       users: [
         {
-            picture: 'path-to-image',
-            firstName: 'Robert',
-            lastName: 'Bonet',
-            email: 'robert.bonet@example.com',
-            handle: 'robertbonet',
-            isAdmin: true,
+          picture: profile1,
+          firstName: 'Robert',
+          lastName: 'Bonet',
+          email: 'robert.bonet@example.com',
+          handle: 'robertbonet',
+          isAdmin: true,
         },
         {
-            picture: 'path-to-image',
-            firstName: 'John',
-            lastName: 'Doe',
-            email: 'john.doe@example.com',
-            handle: 'johndoe',
-            isAdmin: false,
+          picture: profile2,
+          firstName: 'Emily',
+          lastName: 'Pickering',
+          email: 'emily.pickering@example.com',
+          handle: 'emilypickering',
+          isAdmin: false,
         },
         {
-            picture: 'path-to-image',
-            firstName: 'John',
-            lastName: 'Smith',
-            email: 'john.smith@example.com', 
-            handle: 'johnsmith',
-            isAdmin: false,
-        },
-        {
-            picture: 'path-to-image',
-            firstName: 'Jane',
-            lastName: 'Smith',
-            email: 'jane.smith@example.com',
-            handle: 'janesmith',
-            isAdmin: false,
+          picture: profile3,
+          firstName: 'Henry',
+          lastName: 'Becker',
+          email: 'henry.becker@example.com',
+          handle: 'henrybecker',
+          isAdmin: false,
         },
       ],
       newUser: {
@@ -87,34 +83,36 @@ export default {
         lastName: '',
         email: '',
         handle: '',
-        isAdmin: false
-      }
+        isAdmin: false,
+      },
     };
   },
   methods: {
     addNewUser() {
-      // Add validation logic if required
-      this.users.push({...this.newUser, picture: 'path-to-image'});
-      // Clear the form after adding user
-      this.clearForm();
-    },
-    clearForm() {
+      this.users.push({...this.newUser}); 
       this.newUser = {
         firstName: '',
         lastName: '',
         email: '',
         handle: '',
-        isAdmin: false
+        isAdmin: false,
       };
+      console.log('User added');
+    },
+    editUser(index, editedUser) {
+      this.users.splice(index, 1, editedUser);
+      console.log('User edited');
+    },
+    deleteUser(index) {
+      this.users.splice(index, 1);
+      console.log('User deleted');
+    },
+    getUserPicture(picture) {
+      return picture;
     }
   }
 };
 </script>
 
 <style scoped>
-.input-field {
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  width: 100%;
-}
 </style>

@@ -1,67 +1,85 @@
-<script setup lang="ts">
-import { RouterLink } from 'vue-router';
-import { ref } from 'vue';
-
-let isActive = ref(false);
-
-function toggleMenu() {
-  isActive.value = !isActive.value;
-}
-</script>
-
 <template>
-  <nav class="bg-gray-800">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div class="relative flex h-16 items-center justify-between">
-        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          <div class="flex flex-shrink-0 items-center">
-            <img class="h-8 w-auto" src="" alt="Logo for the Website">
-          </div>
-          <div class="hidden sm:ml-6 sm:block">
-            <div class="flex space-x-4">
-              <a class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
-                <RouterLink to="/home">Home</RouterLink>
-              </a>
-              <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                <RouterLink to="/myactivity">My Activity</RouterLink>
-              </a>
-              <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                <RouterLink to="/statistics">Statistics</RouterLink>
-              </a>
-              <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                <RouterLink to="/friendsactivity">Friends Activity</RouterLink>
-              </a>
-              <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                <RouterLink to="/peoplesearch">People Search</RouterLink>
-              </a>
-              <a class ="text-gray-300 hover:bg-gray-700 hover:text0white rounded-md px-3 py-2 text-sm font-medium"><RouterLink to =/admin>Admin</RouterLink></a>
-            </div>
+  <nav class="bg-gray-900">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex-shrink-0">
+          <a href="/" class="flex items-center">
+            <img class="h-8 w-auto mr-2" src="../assets/favicon.ico" alt="Logo for the Website">
+            <span class="text-white text-lg font-semibold">Building Better</span>
+          </a>
+        </div>
+        <div class="hidden sm:block">
+          <div class="flex space-x-5">
+            <router-link :to="myActivityLink" class="nav-link">My Activity</router-link>
+            <router-link to="/statistics" class="nav-link">Statistics</router-link>
+            <router-link :to="friendsLink" class="nav-link">Friends Activity</router-link>
+            <router-link to="/peoplesearch" class="nav-link">People Search</router-link>
+            <router-link :to="adminLink" class="nav-link">Admin</router-link>
           </div>
         </div>
         <div class="flex items-center">
-          <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-            <RouterLink to="/signup">Sign Up</RouterLink>
-          </a>
-          <div class="relative" @mouseover="showDropdown = true" @mouseout="showDropdown = false">
-          <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" @click="toggleDropdown">
-            Log In
-          </button>
-          <div v-if="showDropdown" class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
-            <RouterLink to="/login/user1" class="block px-4 py-2 text-gray-800 hover:bg-gray-300">User 1</RouterLink>
-            <RouterLink to="/login/user2" class="block px-4 py-2 text-gray-800 hover:bg-gray-300">User 2</RouterLink>
-            <RouterLink to="/login/user3" class="block px-4 py-2 text-gray-800 hover:bg-gray-300">User 3</RouterLink>
+          <router-link v-if="!isLoggedIn" to="/signup" class="nav-link">Sign Up</router-link>
+          <div v-if="!isLoggedIn">
+            <div class="relative" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
+              <a class="nav-link" @click="toggleDropdown">Log in</a>
+              <div v-if="showDropdown" class="absolute right-0 top-full mt-2 w-48 bg-gray-900 border rounded-md shadow-lg" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
+                <a @click="loginAsRobert" class="block px-4 py-2 text-white hover:bg-gray-800">Log in as Robert</a>
+                <router-link to="/login" class="block px-4 py-2 text-white hover:bg-gray-800">Log in as other user</router-link>
+              </div>
+            </div>
           </div>
+          <div v-else class="flex items-center">
+            <span class="text-white mr-2">Logged in as Robert</span>
+            <img src="../assets/profile1.jpg" alt="robertprofile" class="h-8 w-8 rounded-full">
+            <a @click="logout" class="nav-link ml-4">Log out</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-</nav>
+  </nav>
 </template>
 
 
-<style scoped>
-.navbar {
-    background-color: black;
-    color: white;
+<script setup lang="ts">
+import { ref, computed } from 'vue';
+import { useStore } from 'vuex';
+
+let showDropdown = ref(false);
+const store = useStore();
+
+function loginAsRobert() {
+  store.commit('loginAsRobert');
+}
+
+function logout() {
+  store.commit('logout');
+}
+
+function toggleDropdown() {
+  showDropdown.value = !showDropdown.value;
   }
+
+const isLoggedIn = computed(() => store.state.isLoggedInAsRobert);
+const friendsLink = computed(() => isLoggedIn.value ? '/friendsactivity': '/noti')
+const myActivityLink = computed(() => isLoggedIn.value ? '/myactivity' : '/noti');
+const adminLink = computed(() => isLoggedIn.value ? '/admin' : '/noti');
+</script>
+
+<style scoped>
+.nav-link {
+  text-decoration: none;
+  color: #d1d5db;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border-radius: 0.375rem; 
+}
+
+.nav-link:hover {
+  background-color: #374151;
+}
+
+.nav-dropdown {
+  border-radius: 0.375rem; 
+}
 </style>

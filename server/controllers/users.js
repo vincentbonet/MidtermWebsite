@@ -1,16 +1,7 @@
-/* B"H
-*/
 const users = require('../models/users')
 const express = require('express');
 const app = express.Router();
 
-/*
-    Ways that we send information to the server:
-    1. Path parameters
-    2. Query parameters
-    3. Body
-    4. Headers
-*/
 
 /** 
  * @typedef {import('../../client/src/model/users').User} User 

@@ -1,0 +1,55 @@
+###
+GET http://localhost:3000/api/v1/users
+
+###
+GET http://localhost:3000/api/v1/users/3
+
+###
+GET http://localhost:3000/api/v1/users/search?q=plot
+
+###
+DELETE http://localhost:3000/api/v1/users/1
+
+###
+POST http://localhost:3000/api/v1/users
+Content-Type: application/json
+
+{
+}
+
+###
+PATCH http://localhost:3000/api/v1/users/31
+Content-Type: application/json
+
+{
+    "firstName": "Robert",
+}
+
+// ############################################################################################
+// Products
+
+###
+GET http://localhost:3000/api/v1/products
+
+###
+GET http://localhost:3000/api/v1/products/3
+
+###
+GET http://localhost:3000/api/v1/products/search?q=5g 
+
+###
+DELETE http://localhost:3000/api/v1/products/1
+
+###
+POST http://localhost:3000/api/v1/products
+Content-Type: application/json
+
+{
+}
+
+###
+PATCH http://localhost:3000/api/v1/products/31
+Content-Type: application/json
+
+{
+}

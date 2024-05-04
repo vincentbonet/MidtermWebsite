@@ -1,42 +1,58 @@
 const Activity = require('../models/activity');
+const express = require('express');
 
-const activityController = {};
+const app = express.Router();
 
+app
 // Create activity
-activityController.createActivity = async function(data) {
+.post('/', async (req, res, next) => {
+    const data = req.body;
+
     try {
         const newActivity = new Activity(data);
-        return await newActivity.save();
-    } catch (error) {
-        throw error;
-    }
-};
+        const savedActivity = await newActivity.save();
 
+        res.send({ data: savedActivity, isSuccess: true });
+    } catch (error) {
+        next(error);
+    }
+})
 // Read activity
-activityController.getActivity = async function(activityId) {
-    try {
-        return await Activity.findById(activityId);
-    } catch (error) {
-        throw error;
-    }
-};
+.get('/:id', async (req, res, next) => {
+    const activityId = req.params.id;
 
+    try {
+        const activity = await Activity.findById(activityId);
+
+        res.send({ data: activity, isSuccess: true });
+    } catch (error) {
+        next(error);
+    }
+})
 // Update activity
-activityController.updateActivity = async function(activityId, updatedData) {
-    try {
-        return await Activity.findByIdAndUpdate(activityId, updatedData, { new: true });
-    } catch (error) {
-        throw error;
-    }
-};
+.patch('/:id', async (req, res, next) => {
+    const activityId = req.params.id;
+    const updatedData = req.body;
 
+    try {
+        const updatedActivity = await Activity.findByIdAndUpdate(activityId, updatedData, { new: true });
+
+        res.send({ data: updatedActivity, isSuccess: true });
+    } catch (error) {
+        next(error);
+    }
+})
 // Delete activity
-activityController.deleteActivity = async function(activityId) {
-    try {
-        return await Activity.findByIdAndDelete(activityId);
-    } catch (error) {
-        throw error;
-    }
-};
+.delete('/:id', async (req, res, next) => {
+    const activityId = req.params.id;
 
-module.exports = activityController;
+    try {
+        const deletedActivity = await Activity.findByIdAndDelete(activityId);
+
+        res.send({ data: deletedActivity, isSuccess: true });
+    } catch (error) {
+        next(error);
+    }
+});
+
+module.exports = app;

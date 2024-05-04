@@ -1,42 +1,58 @@
-const ExerciseType = require('../models/exerciseType');
+const User = require('../models/user');
+const express = require('express');
 
-const exerciseController = {};
+const app = express.Router();
 
-// Create exercise type
-exerciseController.createExerciseType = async function(data) {
+app
+// Create user
+.post('/', async (req, res, next) => {
+    const data = req.body;
+
     try {
-        const newExerciseType = new ExerciseType(data);
-        return await newExerciseType.save();
-    } catch (error) {
-        throw error;
-    }
-};
+        const newUser = new User(data);
+        const savedUser = await newUser.save();
 
-// Read exercise type
-exerciseController.getExerciseType = async function(exerciseTypeId) {
+        res.send({ data: savedUser, isSuccess: true });
+    } catch (error) {
+        next(error);
+    }
+})
+// Read user
+.get('/:id', async (req, res, next) => {
+    const userId = req.params.id;
+
     try {
-        return await ExerciseType.findById(exerciseTypeId);
-    } catch (error) {
-        throw error;
-    }
-};
+        const user = await User.findById(userId);
 
-// Update exercise type
-exerciseController.updateExerciseType = async function(exerciseTypeId, updatedData) {
+        res.send({ data: user, isSuccess: true });
+    } catch (error) {
+        next(error);
+    }
+})
+// Update user
+.patch('/:id', async (req, res, next) => {
+    const userId = req.params.id;
+    const updatedData = req.body;
+
     try {
-        return await ExerciseType.findByIdAndUpdate(exerciseTypeId, updatedData, { new: true });
-    } catch (error) {
-        throw error;
-    }
-};
+        const updatedUser = await User.findByIdAndUpdate(userId, updatedData, { new: true });
 
-// Delete exercise type
-exerciseController.deleteExerciseType = async function(exerciseTypeId) {
+        res.send({ data: updatedUser, isSuccess: true });
+    } catch (error) {
+        next(error);
+    }
+})
+// Delete user
+.delete('/:id', async (req, res, next) => {
+    const userId = req.params.id;
+
     try {
-        return await ExerciseType.findByIdAndDelete(exerciseTypeId);
-    } catch (error) {
-        throw error;
-    }
-};
+        const deletedUser = await User.findByIdAndDelete(userId);
 
-module.exports = exerciseController;
+        res.send({ data: deletedUser, isSuccess: true });
+    } catch (error) {
+        next(error);
+    }
+});
+
+module.exports = app;

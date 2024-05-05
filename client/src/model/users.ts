@@ -17,9 +17,12 @@ export interface User {
 export interface Activity {
     date: string;
     duration: number;
-    caloriesBurned: number;
-    image: string;
-    description: string;
+    exerciseData : {
+        steps: number;
+        caloriesBurned: number;
+        image: string;
+        description: string;
+    }
 }
 
 export async function addUser(user: User) {

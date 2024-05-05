@@ -8,6 +8,7 @@ import peoplesearch from '../pages/peoplesearch.vue';
 import signup from '../pages/signup.vue';
 import login from '../pages/login.vue';
 import noti from '../pages/noti.vue';
+import social from '../pages/social.vue';
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/friendsactivity',
     name: 'friendsactivity',
     component: friendsactivity
+  },
+  {
+    path: '/social',
+    name: 'social',
+    component: social
   },
   {
     path: '/myactivity',

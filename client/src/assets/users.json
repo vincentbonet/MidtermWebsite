@@ -1,0 +1,64 @@
+{
+    "users": [
+        {
+            "id": 5,
+            "name": "John Doe",
+            "age": 30,
+            "exerciseData": {
+                "steps": 7000,
+                "caloriesBurned": 450,
+                "heartRate": 75
+            }
+        },
+        {
+            "id": 6,
+            "name": "Jane Smith",
+            "age": 25,
+            "exerciseData": {
+                "steps": 9000,
+                "caloriesBurned": 550,
+                "heartRate": 80
+            }
+        },
+        {
+            "id": 7,
+            "name": "Michael Johnson",
+            "age": 35,
+            "exerciseData": {
+                "steps": 10000,
+                "caloriesBurned": 700,
+                "heartRate": 85
+            }
+        },
+        {
+            "id": 8,
+            "name": "Sarah Davis",
+            "age": 28,
+            "exerciseData": {
+                "steps": 6000,
+                "caloriesBurned": 400,
+                "heartRate": 70
+            }
+        },
+        {
+            "id": 9,
+            "name": "David Wilson",
+            "age": 32,
+            "exerciseData": {
+                "steps": 8000,
+                "caloriesBurned": 500,
+                "heartRate": 75
+            }
+        },
+        {
+            "id": 10,
+            "name": "Jennifer Brown",
+            "age": 27,
+            "exerciseData": {
+                "steps": 5000,
+                "caloriesBurned": 300,
+                "heartRate": 80
+            }
+        }
+    ]
+}

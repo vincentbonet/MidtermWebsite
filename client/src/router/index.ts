@@ -56,52 +56,7 @@ const routes = [
     component: noti
   }
 ];
-
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
-
-// API functions
-const fetchData = async (url: string) => {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-};
-
-const postData = async (url: string, data: any) => {
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    const responseData = await response.json();
-    return responseData;
-  } catch (error) {
-    console.error('Error posting data:', error);
-    throw error;
-  }
-};
-
-// Data envelopes
-const createDataEnvelope = (data: any) => {
-  return {
-    data,
-    timestamp: Date.now(),
-  };
-};
-
-const extractDataFromEnvelope = (envelope: any) => {
-  return envelope.data;
-};
-
-export { fetchData, postData, createDataEnvelope, extractDataFromEnvelope };
-export default router;

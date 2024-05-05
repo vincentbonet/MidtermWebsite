@@ -1,6 +1,6 @@
-require('dotenv').config();
 const path = require('path');
 const express = require('express');
+require('dotenv').config();
 const userController = require('./controllers/users.js');
 const activityController = require('./controllers/activity.js');
 const exerciseController = require('./controllers/exercise.js');

@@ -22,10 +22,6 @@
 import Footer from '../components/Footer.vue';
 const friends = [
   { 
-    name: 'Henry', 
-    today: { miles: 1.3, duration: '0:21' },
-  },
-  { 
     name: 'Emily', 
     today: { miles: 2.5, duration: '0:45' },
   },

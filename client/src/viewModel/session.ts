@@ -1,7 +1,7 @@
 import { User } from "../model/users";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import * as myfetch from "../model/myfetch";
+import * as myfetch from "../model/myFetch";
 import { useToast }  from "vue-toastification";
 
 const session = reactive({

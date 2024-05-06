@@ -37,7 +37,7 @@ import Footer from '../components/Footer.vue'
   <Footer />
 </template>
 <style scoped>
-.bg-gray-900{
+.bg-gray-800{
   background-color: #111111;
 }
 </style>

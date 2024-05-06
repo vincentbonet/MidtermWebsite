@@ -15,8 +15,12 @@ const session = refSession();
 
 </template>
 
-<style scoped>
+<style>
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+body {
+  background-color: #1d1e1d !important;
+}
 </style>

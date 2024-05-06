@@ -32,5 +32,7 @@ const friends = [
 .bg-gray-200 {
   margin-top: 0;
 }
-
+.bg-gray-800 {
+  background-color: #111111;
+}
 </style>

@@ -107,4 +107,10 @@ export default {
 </script>
 
 <style scoped>
+body{ 
+  background-color: #1d1e1d !important;
+}
+.bg-gray-700 {
+  background-color: #111111;
+}
 </style>

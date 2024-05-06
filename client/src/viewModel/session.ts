@@ -9,8 +9,6 @@ const session = reactive({
     isLoading: 0,
 });
 
-export const refSession = () => session;
-
 export function getSession() {
     return session;
 }
@@ -33,6 +31,8 @@ export function useLogin() {
 
     return { login, logout };
 }
+
+export const refSession = () => session;
 
 export function api<T>(action: string, data?: unknown, method?: string) {
     session.isLoading++;

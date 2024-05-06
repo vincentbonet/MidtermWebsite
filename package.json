@@ -1,19 +1,21 @@
 {
     "name": "@myusername/midterm-website-1",
     "version": "1.0.0",
-    "description": "Midterm Website 1",
+    "description": "- Create another repo",
     "author": "",
-    "license": "Apache-2.0",
+    "license": "ISC",
     "scripts": {
-        "start": "node server/index.js",
-        "dev": "nodemon server/index.js --watch server/"
+      "build": "npm i --production && cd client && npm i && npm run build",
+      "start": "node server/index.js",
+      "dev": "nodemon server/index.js --watch server/"
     },
     "dependencies": {
-        "dayjs": "^1.11.10",
-        "express": "^4.18.2",
-        "vue-toastification": "^1.7.14"
+      "dotenv": "^16.4.5",
+      "mongodb": "^6.5.0",
+      "dayjs": "^1.11.10",
+      "express": "^4.18.2"
     },
     "devDependencies": {
-        "nodemon": "^3.0.3"
+      "nodemon": "^3.0.3"
     }
-}
+  }

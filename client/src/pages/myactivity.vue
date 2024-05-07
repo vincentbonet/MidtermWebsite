@@ -34,7 +34,8 @@ import Footer from '../components/Footer.vue'
       </div>
     </div>
   </div>
-  <Footer />
+  <AddActivity></AddActivity>
+  <Footer></Footer>
 </template>
 <style scoped>
 .bg-gray-800{

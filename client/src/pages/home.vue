@@ -9,7 +9,7 @@ import Footer from '../components/Footer.vue'
         <h2 class="text-lg text-gray-200 mb-8">To use Building Better, Login on the top right.</h2>
         </div>
     </div>
-    <Footer/>
+    <Footer></Footer>
 </template>
 
 <style scoped>

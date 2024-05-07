@@ -9,7 +9,7 @@ import Footer from '../components/Footer.vue'
         <h2 class="text-lg text-gray-200 mb-8">You don't need to provide a comprehensive statistics page, the home page will do.</h2>
       </div>
     </div>
-    <Footer />
+    <Footer></Footer>
 </template>
 
 <style scoped>

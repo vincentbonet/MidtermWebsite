@@ -28,10 +28,6 @@ fetchData();
 </script>
 
 <style scoped>
-/* Add your scoped styles here if needed */
-</style>
-
-<style scoped>
 .modal {
   position: fixed;
   top: 0;

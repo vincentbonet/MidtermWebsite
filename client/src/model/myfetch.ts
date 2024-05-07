@@ -1,6 +1,6 @@
 import type { DataEnvelope } from "./transporttypes";
 
-export const API_ROOT = import.meta.env.VITE_API_ROOT;
+export const API_ROOT = process.env.VITE_API_ROOT;
 
 export function rest(url: string, data?: unknown, method?: string) {
     return fetch(url, {

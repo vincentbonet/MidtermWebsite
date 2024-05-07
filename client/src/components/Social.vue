@@ -1,45 +1,59 @@
-<!-- SocialModal.vue -->
-<template>
-    <div>
-      <button @click="openModal">Open</button>
-      <Modal v-if="showModal" @close="closeModal">
-        <SocialMediaButtons :friends="friends" />
-      </Modal>
-    </div>
-  </template>
-  .
-  <script setup lang="ts">
-  import { ref } from 'vue';
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
 
-  const showModal = ref(false);
-  const friends = ref([]);
-  
-  const openModal = async () => {
-    friends.value = await getUsersData();
-    showModal.value = true;
-  };
-  
-  const closeModal = () => {
-    showModal.value = false;
-  };
-  </script>
-  
-  <!-- App.vue -->
-  <template>
-    <div class="flex items-center justify-center h-screen bg-gray-800">
-      <div class="bg-gray-200 max-w-7xl px-6 lg:px-8 py-8 rounded-lg shadow-xl">
-      </div>
+const users = ref([]);
+const showModal = ref(false);
+
+onMounted(async () => {
+  const response = await fetch('./data/users.json');
+  users.value = await response.json();
+});
+
+const openModal = () => {
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
+};
+</script>
+
+<template>
+  <button @click="openModal">Show Users</button>
+
+  <div v-if="showModal" class="modal">
+    <button @click="closeModal">Close</button>
+
+    <div v-for="user in users" :key="user.id">
+      <p>{{ user.name }}</p>
+      <p>{{ user.email }}</p>
+      <!-- Add more fields as necessary -->
     </div>
-    <Footer />
-  </template>
-  
-  <script setup lang="ts">
-  import Footer from '../components/Footer.vue';
-  </script>
-  
-  <style scoped>
-  .bg-gray-800 {
-    background-color: #111111;
-  }
-  </style>
-  
+  </div>
+</template>
+
+<style scoped>
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .modal div {
+        background-color: white;
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+</style>

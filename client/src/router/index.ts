@@ -4,7 +4,7 @@ import admin from '../pages/admin.vue';
 import friendsactivity from '../pages/friendsactivity.vue';
 import myactivity from '../pages/myactivity.vue';
 import statistics from '../pages/statistics.vue';
-import peoplesearch from '../pages/peoplesearch.vue';
+import findbuddies from '../pages/findbuddies.vue';
 import signup from '../pages/signup.vue';
 import login from '../pages/login.vue';
 import noti from '../pages/noti.vue';
@@ -42,9 +42,9 @@ const routes = [
     component: statistics
   },
   {
-    path: '/peoplesearch',
-    name: 'peoplesearch',
-    component: peoplesearch
+    path: '/findbuddies',
+    name: 'findbuddies',
+    component: findbuddies
   },
   {
     path: '/signup',

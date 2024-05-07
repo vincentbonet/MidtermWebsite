@@ -6,7 +6,7 @@ import Social from '../components/Social.vue'
 <template>
   <div class="flex items-center justify-center h-screen bg-gray-800">
     <div class="text-center">
-      <h1 class="text-3xl font-semibold text-gray-100 mb-4">Social </h1>
+      <h1 class="text-3xl font-semibold text-gray-100 mb-4">Find Buddies:</h1>
       <Social></Social>
     </div>
   </div>

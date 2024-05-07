@@ -5,10 +5,11 @@ import Social from '../components/Social.vue'
 
 <template>
   <div class="flex items-center justify-center h-screen bg-gray-800">
-      <div class="text-center">
-        <h1 class="text-3xl font-semibold text-gray-100 mb-4">People Search</h1>
-        </div>
+    <div class="text-center">
+      <h1 class="text-3xl font-semibold text-gray-100 mb-4">Social </h1>
+      <Social></Social>
     </div>
+  </div>
   <Footer></Footer>
 </template>
 

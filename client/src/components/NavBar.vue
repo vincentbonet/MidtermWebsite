@@ -13,7 +13,7 @@
             <router-link :to="myActivityLink" class="nav-link">My Activity</router-link>
             <router-link to="/statistics" class="nav-link">Statistics</router-link>
             <router-link :to="friendsLink" class="nav-link">Friends Activity</router-link>
-            <router-link to="/peoplesearch" class="nav-link">People Search</router-link>
+            <router-link to="/findbuddies" class="nav-link">Find Buddies</router-link>
             <router-link :to="adminLink" class="nav-link">Admin</router-link>
           </div>
         </div>

@@ -1,8 +1,8 @@
 const users = require('../models/users');
 const express = require('express');
-const app = express.Router();
+const router = express.Router();
 
-app 
+router 
     .get('/', (req, res) => {
         res.json(users);
     })
@@ -41,3 +41,5 @@ app
             res.status(404).json({ message: 'User not found' });
         }
     });
+
+module.exports = router;

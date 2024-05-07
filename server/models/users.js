@@ -1,5 +1,6 @@
 const fs = require('fs/promises');
-const userPath = __dirname + '/..data/users.json';
+const path = require('path');
+const userPath = path.join(__dirname, '..', 'data', 'users.json');
 
 /** @type { Promise< { items: User[] } > } */
 const promiseData = fs 
@@ -84,7 +85,7 @@ async function login(email, password) {
     const data = await dataP;
     const user = data.items.find(item => item.email === email);
     if(!user) throw new Error("Invalid email");
-    //if(user.password !== password) throw new Error("Invalid password");
+    
 
     return user
 }

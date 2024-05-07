@@ -1,47 +1,35 @@
 <template>
   <div>
-    <button @click="openModal">Open</button>
-
-    <div v-if="showModal" class="modal">
-      <div class="modal-content">
-        <h2>Users' Activities</h2>
-        <ul>
-          <li v-for="user in users" :key="user.id">
-            {{ user.name }}: {{ user.activity }}
-          </li>
-        </ul>
-        <button @click="closeModal">Close</button>
-      </div>
-    </div>
+    <h2>Users' Activities</h2>
+    <ul>
+      <li v-for="user in users" :key="user.id">
+        <strong>{{ user.name }}</strong>: {{ user.activity }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
-const showModal = ref(false);
 const users = ref([]);
 
-const openModal = () => {
-  showModal.value = true;
-};
-
-const closeModal = () => {
-  showModal.value = false;
-};
-
-const fetchData = async () => {
+onMounted(async () => {
   try {
-    const response = await fetch('./data/users.json');
+    const response = await fetch('http://localhost:3000/data/users');
     const data = await response.json();
     users.value = data;
   } catch (error) {
     console.error(error);
   }
-};
+});
 
 fetchData();
 </script>
+
+<style scoped>
+/* Add your scoped styles here if needed */
+</style>
 
 <style scoped>
 .modal {

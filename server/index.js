@@ -27,15 +27,14 @@ app
 
     .use(parseAuthorizationToken)
 
-    .use('/users', userController)
-
-    .use('/activity', activityController)
-
-    .use('/exercise', exerciseController)
 
     .get('*', (req, res) =>  {
         res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-})
+    })
+
+    .get('/data/users', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'data/users.json'));
+    });
 
 
 // 404 

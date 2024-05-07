@@ -49,7 +49,7 @@ async function add(user) {
  * @returns {Promise<User>}
  * */
 async function update(user) {
-    const data = await dataP;
+    const data = await promiseData;
     const index = data.items.findIndex(item => item.id == user.id);
     if (index >= 0) {
         data.items[index] = {
@@ -66,7 +66,7 @@ async function update(user) {
  * @returns {Promise<User | null>}
  * */
 async function remove(id) {
-    const data = await dataP;
+    const data = await promiseData;
     const index = data.items.findIndex(item => item.id == id);
     if (index >= 0) {
         const deleted = data.items.splice(index, 1);
@@ -82,11 +82,9 @@ async function remove(id) {
  * @returns {Promise<User>}
  * */
 async function login(email, password) {
-    const data = await dataP;
+    const data = await promiseData;
     const user = data.items.find(item => item.email === email);
     if(!user) throw new Error("Invalid email");
-    
-
     return user
 }
 

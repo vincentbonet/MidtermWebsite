@@ -42,24 +42,24 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { useStore } from 'vuex';
+import { getAll, login } from "server/controllers/users.js";
 
 let showDropdown = ref(false);
-const store = useStore();
 
-function loginAsRobert() {
-  store.commit('loginAsRobert');
-}
-
-function logout() {
-  store.commit('logout');
+async function loginAsRobert() {
+  try {
+    const user = await login("robert@example.com", "password"); 
+    isLoggedIn.value = true;
+  } catch (error) {
+    console.error("Login failed:", error.message);
+  }
 }
 
 function toggleDropdown() {
   showDropdown.value = !showDropdown.value;
   }
 
-const isLoggedIn = computed(() => store.state.isLoggedInAsRobert);
+const isLoggedIn = ref(false);
 const friendsLink = computed(() => isLoggedIn.value ? '/friendsactivity': '/noti')
 const myActivityLink = computed(() => isLoggedIn.value ? '/myactivity' : '/noti');
 const adminLink = computed(() => isLoggedIn.value ? '/admin' : '/noti');

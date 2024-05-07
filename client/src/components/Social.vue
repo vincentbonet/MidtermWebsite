@@ -1,13 +1,26 @@
-<script setup lang="ts">
-import { ref, onMounted } from 'vue';
+<template>
+  <div>
+    <button @click="openModal">Open</button>
 
-const users = ref([]);
+    <div v-if="showModal" class="modal">
+      <div class="modal-content">
+        <h2>Users' Activities</h2>
+        <ul>
+          <li v-for="user in users" :key="user.id">
+            {{ user.name }}: {{ user.activity }}
+          </li>
+        </ul>
+        <button @click="closeModal">Close</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
 const showModal = ref(false);
-
-onMounted(async () => {
-  const response = await fetch('./data/users.json');
-  users.value = await response.json();
-});
+const users = ref([]);
 
 const openModal = () => {
   showModal.value = true;
@@ -16,44 +29,36 @@ const openModal = () => {
 const closeModal = () => {
   showModal.value = false;
 };
+
+const fetchData = async () => {
+  try {
+    const response = await fetch('./data/users.json');
+    const data = await response.json();
+    users.value = data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+fetchData();
 </script>
 
-<template>
-  <button @click="openModal">Show Users</button>
-
-  <div v-if="showModal" class="modal">
-    <button @click="closeModal">Close</button>
-
-    <div v-for="user in users" :key="user.id">
-      <p>{{ user.name }}</p>
-      <p>{{ user.email }}</p>
-      <!-- Add more fields as necessary -->
-    </div>
-  </div>
-</template>
-
 <style scoped>
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .modal button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-    }
-
-    .modal div {
-        background-color: white;
-        padding: 20px;
-        margin-bottom: 10px;
-    }
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
 </style>

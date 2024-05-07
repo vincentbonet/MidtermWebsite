@@ -1,20 +1,22 @@
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
-require('dotenv').config();
-const userController = require('./controllers/users.js');
-const activityController = require('./controllers/activity.js');
-const exerciseController = require('./controllers/exercise.js');
-const { parseAuthorizationToken, requireUser } = require('./middleware/auth.js');
+const users = require('./controllers/users')
 
 const app = express();
-
 const PORT = process.env.PORT ?? 3000; 
+
+console.log('PORT:', PORT)
 
 app
     .use('/', express.static(path.join(__dirname, '../client/dist')))
 
     .use(express.json())
 
+    .use('/api/users', users)
+
+
+    //CORS
     .use((req, res, next) => { 
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', '*');
@@ -25,17 +27,11 @@ app
         next();
     }) 
 
-    .use(parseAuthorizationToken)
-
+    .get('/api/v1/users', userController)
 
     .get('*', (req, res) =>  {
         res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     })
-
-    .get('/data/users', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'data/users.json'));
-    });
-
 
 // 404 
 app.use((req, res, next) => {

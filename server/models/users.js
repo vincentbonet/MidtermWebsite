@@ -1,80 +1,94 @@
 const fs = require('fs/promises');
-const path = require('path');
+const userPath = __dirname + '/..data/users.json';
 
-class User {
-    constructor() {
-        this.filePath = path.join(__dirname, '../data/users.json');
-    }
-//Get All Users
-    async getAllUsers() {
-        try {
-            const data = await fs.readFile(this.filePath, 'utf8');
-            return JSON.parse(data);
-        } catch (error) {
-            console.error('Error reading users data:', error);
-            return [];
-        }
-    }
-//Get User by ID
-    async getUserById(id) {
-        try {
-            const data = await fs.readFile(this.filePath, 'utf8');
-            const users = JSON.parse(data);
-            return users.find(user => user.id === id);
-        } catch (error) {
-            console.error('Error reading users data:', error);
-            return null;
-        }
-    }
-//Add User
-    async addUser(user) {
-        try {
-            const data = await fs.readFile(this.filePath, 'utf8');
-            const users = JSON.parse(data);
-            users.push(user);
-            await fs.writeFile(this.filePath, JSON.stringify(users, null, 2));
-            return user;
-        } catch (error) {
-            console.error('Error adding user:', error);
-            return null;
-        }
-    }
-//Update User
-    async updateUser(id, updatedUser) {
-        try {
-            const data = await fs.readFile(this.filePath, 'utf8');
-            let users = JSON.parse(data);
-            const index = users.findIndex(user => user.id === id);
-            if (index !== -1) {
-                users[index] = { ...users[index], ...updatedUser };
-                await fs.writeFile(this.filePath, JSON.stringify(users, null, 2));
-                return users[index];
-            } else {
-                throw new Error('User not found');
-            }
-        } catch (error) {
-            console.error('Error updating user:', error);
-            return null;
-        }
-    }
-//Delete User
-    async deleteUser(id) {
-        try {
-            const data = await fs.readFile(this.filePath, 'utf8');
-            let users = JSON.parse(data);
-            const index = users.findIndex(user => user.id === id);
-            if (index !== -1) {
-                const deletedUser = users.splice(index, 1)[0];
-                await fs.writeFile(this.filePath, JSON.stringify(users, null, 2));
-                return deletedUser;
-            } else {
-                throw new Error('User not found');
-            }
-        } catch (error) {
-            console.error('Error deleting user:', error);
-            return null;
-        }
-    }
+/** @type { Promise< { items: User[] } > } */
+const promiseData = fs 
+    .access(userPath, fs.constants.F_OK)
+    .then(() => fs.readFile(userPath, 'utf-8'))
+    .then(data => JSON.parse(data))
+
+
+async function save() {
+    const data = await promiseData;
+    return fs.writeFile(userPath, JSON.stringify(data, null, 2));
 }
-//Export User
-module.exports = User;
+/**
+ * @typedef {import('../../client/src/model/users').User} User
+ * */
+
+/**
+ * @returns {Promise<User[]>}
+ * */
+
+async function getAll() {
+    const data = await promiseData;
+    return data.items.map(x=> ({...x}));
+}
+
+/**
+ * @param {number} id
+ * @returns {Promise<User>}
+ * */
+async function search(q) {
+    return (await getAll()).filter(item => 
+        new RegExp(q, 'i').test(item.firstName) ||
+        new RegExp(q, 'i').test(item.lastName) ||
+        new RegExp(q, 'i').test(item.email) );
+}
+
+async function add(user) {
+    const data = await promiseData;
+    user.id = data.items.length + 1;
+    data.items.push(user);
+    await save();
+    return user;
+}
+/**
+ * @param {User} user
+ * @returns {Promise<User>}
+ * */
+async function update(user) {
+    const data = await dataP;
+    const index = data.items.findIndex(item => item.id == user.id);
+    if (index >= 0) {
+        data.items[index] = {
+            ...data.items[index],
+            ...user
+        };
+        await save()
+        return user;
+    }
+    return null;
+}
+/**
+ * @param {number} id
+ * @returns {Promise<User | null>}
+ * */
+async function remove(id) {
+    const data = await dataP;
+    const index = data.items.findIndex(item => item.id == id);
+    if (index >= 0) {
+        const deleted = data.items.splice(index, 1);
+        await save()
+        return deleted[0];
+    }
+    return null;
+}
+
+/**
+ * @param {string} email
+ * @param {string} password
+ * @returns {Promise<User>}
+ * */
+async function login(email, password) {
+    const data = await dataP;
+    const user = data.items.find(item => item.email === email);
+    if(!user) throw new Error("Invalid email");
+    //if(user.password !== password) throw new Error("Invalid password");
+
+    return user
+}
+
+module.exports = {
+    getAll, search, add, update, remove, login
+}

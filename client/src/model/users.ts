@@ -25,6 +25,7 @@ export interface Activity {
     }
 }
 
-export function getUsers() {
-    return api<User[]>("users");
+export async function getUsers() {
+    const data = await api<User[]>("users");
+    return data ? data.data : [];
 }

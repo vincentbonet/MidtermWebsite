@@ -1,0 +1,78 @@
+###
+### GET /protected-route (without authentication)
+###
+
+GET http://localhost:3000/protected-route
+
+###
+
+###
+### GET /admin-route (without authentication)
+###
+
+GET http://localhost:3000/admin-route
+
+###
+
+###
+### GET /protected-route (with authentication)
+### Add authentication token or session cookie if required
+
+GET http://localhost:3000/protected-route
+
+###
+
+###
+### GET /admin-route (with authentication and admin role)
+### Add authentication token or session cookie if required
+
+GET http://localhost:3000/admin-route
+
+###
+
+###
+### GET /api/users (sample user endpoint)
+###
+
+GET http://localhost:3000/api/users
+
+###
+
+###
+### POST /api/users (create user endpoint)
+### Add request body with user data
+
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "testpassword"
+}
+
+###
+
+###
+### PUT /api/users/:id (update user endpoint)
+### Replace :id with the ID of the user to update
+### Add request body with updated user data
+
+PUT http://localhost:3000/api/users/1
+Content-Type: application/json
+
+{
+  "username": "updateduser",
+  "email": "updated@example.com",
+  "password": "updatedpassword"
+}
+
+###
+
+###
+### DELETE /api/users/:id (delete user endpoint)
+### Replace :id with the ID of the user to delete
+
+DELETE http://localhost:3000/api/users/1
+
+###

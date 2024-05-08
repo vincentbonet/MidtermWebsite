@@ -1,5 +1,4 @@
-
-function authenticate(req, res, next) {
+exports.authenticate = function(req, res, next) {
     if (req.isAuthenticated()) {
         return next(); 
     } else {
@@ -7,7 +6,7 @@ function authenticate(req, res, next) {
     }
 }
 
-function authorize(role) {
+exports.authorize = function(role) {
     return (req, res, next) => {
         if (req.user && req.user.role === role) {
             return next(); 

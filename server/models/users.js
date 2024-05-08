@@ -83,10 +83,13 @@ async function remove(id) {
  * */
 async function login(email, password) {
     const data = await promiseData;
-    const user = data.items.find(item => item.email === email);
-    if(!user) throw new Error("Invalid email");
-    return user
+    const user = data.items.find(item => item.email === email && item.password === password);
+    if (!user) {
+        throw new Error("Invalid email or password");
+    }
+    return user;
 }
+
 
 module.exports = {
     getAll, search, add, update, remove, login

@@ -3,10 +3,10 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex-shrink-0">
-          <a href="/" class="flex items-center">
+          <router-link to="/" class="flex items-center">
             <img class="h-8 w-auto mr-2" src="../assets/favicon.ico" alt="Logo for the Website">
             <span class="text-white text-lg font-semibold">Building Better</span>
-          </a>
+          </router-link>
         </div>
         <div class="hidden sm:block">
           <div class="flex space-x-5">
@@ -39,25 +39,40 @@
   </nav>
 </template>
 
-
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { getAll, login } from "server/controllers/users.js";
+import axios from 'axios';
 
 let showDropdown = ref(false);
 
 async function loginAsRobert() {
   try {
-    const user = await login("robert@example.com", "password"); 
-    isLoggedIn.value = true;
+    const response = await axios.post('/api/users/login', {
+      email: 'robert@example.com',
+      password: 'password'
+    });
+    if (response.status === 200) {
+      isLoggedIn.value = true;
+    }
   } catch (error) {
     console.error("Login failed:", error.message);
   }
 }
 
+async function logout() {
+  try {
+    const response = await axios.post('/api/users/logout');
+    if (response.status === 200) {
+      isLoggedIn.value = false;
+    }
+  } catch (error) {
+    console.error("Logout failed:", error.message);
+  }
+}
+
 function toggleDropdown() {
   showDropdown.value = !showDropdown.value;
-  }
+}
 
 const isLoggedIn = ref(false);
 const friendsLink = computed(() => isLoggedIn.value ? '/friendsactivity': '/noti')

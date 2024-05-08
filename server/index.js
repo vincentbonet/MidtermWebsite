@@ -35,7 +35,7 @@ app
     })
     //Catch all route for Vue
     .get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+        res.sendFile(path.join(__dirname, './client/dist/index.html'));
     });
 // Start
 app.listen(PORT, () => {

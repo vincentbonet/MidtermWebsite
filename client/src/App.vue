@@ -5,10 +5,10 @@ import { ref } from 'vue';
 import { refSession } from './viewModel/session';
 
 const session = refSession();
-const isLoading = ref(false); // Add a reactive variable for loading state
+const isLoading = ref(false); 
 
 setTimeout(() => {
-  isLoading.value = false; // Set loading state to false after the operation completes
+  isLoading.value = false;
 }, 2000);
 
 </script>

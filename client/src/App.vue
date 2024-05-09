@@ -31,6 +31,6 @@ setTimeout(() => {
 @import 'tailwindcss/utilities';
 
 body {
-  background-color: #1d1e1d !important;
+  background-color: #111111 !important;
 }
 </style>

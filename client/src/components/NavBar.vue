@@ -75,7 +75,7 @@ function toggleDropdown() {
 }
 
 const isLoggedIn = ref(false);
-//const friendsLink = computed(() => isLoggedIn.value ? '/friendsactivity': '/noti')
+const friendsLink = computed(() => isLoggedIn.value ? '/friendsactivity': '/noti')
 const myActivityLink = computed(() => isLoggedIn.value ? '/myactivity' : '/noti');
 const adminLink = computed(() => isLoggedIn.value ? '/admin' : '/noti');
 </script>

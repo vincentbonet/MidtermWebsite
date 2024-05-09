@@ -6,25 +6,35 @@
         <strong>{{ user.name }}</strong>: {{ user.activity }}
       </li>
     </ul>
+    <div v-if="showModal" class="modal">
+      <div class="modal-content">
+        <h3>Modal Title</h3>
+        <p>This is a modal content</p>
+        <button @click="closeModal">Close Modal</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { api } from '../model/myFetch.ts';
 
 const users = ref([]);
+const showModal = ref(false);
 
-const fetchData = async () => {
+onMounted(async () => {
   try {
-    const response = await fetch('server/data/users.json');
-    const data = await response.json();
+    const data = await api('users');
     users.value = data;
   } catch (error) {
-    console.error(error);
+    console.error("Error found: " + error);
   }
-};
+});
 
-onMounted(fetchData);
+const closeModal = () => {
+  showModal.value = false;
+};
 </script>
 
 <style scoped>

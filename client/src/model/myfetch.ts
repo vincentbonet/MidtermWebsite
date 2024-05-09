@@ -10,7 +10,16 @@ export function rest(url: string, data?: unknown, method?: string) {
         },
         body: data ? JSON.stringify(data) : undefined,
     })
-    .then(x => x.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .catch(error => {
+        console.error("Fetch error:", error);
+        throw error; 
+    });
 }
 
 export function api<T>(action: string, data?: unknown, method?: string): Promise<DataEnvelope<T>> {

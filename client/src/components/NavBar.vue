@@ -22,19 +22,10 @@
           <div v-if="!isLoggedIn">
             <div class="relative" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
               <a class="nav-link" @click="toggleDropdown">Log in</a>
-              <div v-if="showDropdown" class="absolute right-0 top-full mt-2 w-48 bg-black border rounded-md shadow-lg" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
-                <a @click="loginAsRobert" class="block px-4 py-2 text-white hover:bg-black">Log in as Robert</a>
-                <router-link to="/login" class="block px-4 py-2 text-white hover:bg-black">Log in as other user</router-link>
-              </div>
-            </div>
-          </div>
-          <div v-else class="flex items-center">
-            <span class="text-white mr-2">Logged in as Robert</span>
-            <img src="../assets/profile1.jpg" alt="robertprofile" class="h-8 w-8 rounded-full">
-            <a @click="logout" class="nav-link ml-4">Log out</a>
-          </div>
+        </div>
         </div>
       </div>
+    </div>
     </div>
   </nav>
 </template>
@@ -45,7 +36,7 @@ import axios from 'axios';
 
 let showDropdown = ref(false);
 
-async function loginAsRobert() {
+/*async function loginAsRobert() {
   try {
     const response = await axios.post('/api/users/login', {
       email: 'robert@example.com',
@@ -69,6 +60,7 @@ async function logout() {
     console.error("Logout failed:", error.message);
   }
 }
+*/
 
 function toggleDropdown() {
   showDropdown.value = !showDropdown.value;

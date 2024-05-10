@@ -22,7 +22,7 @@ app
         res.json({ message: 'This is an admin-only route' });
     })
     //User routes
-    .use('/api/users', usersRouter)
+    .use('/controllers/users', usersRouter)
     //CORS handling
     .use((req, res, next) => { 
         res.setHeader('Access-Control-Allow-Origin', '*');

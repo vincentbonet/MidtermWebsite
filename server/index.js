@@ -5,7 +5,7 @@ const usersRouter = require('./controllers/users');
 const { authenticate, authorize } = require('./middleware/auth');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = import.meta.env.PORT || 3000;
 
 console.log('PORT:', PORT);
 

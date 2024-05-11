@@ -58,7 +58,7 @@ Content-Type: application/json
 ### Replace :id with the ID of the user to update
 ### Add request body with updated user data
 
-PUT http://localhost:3000/api/v1/users/1
+PUT http://localhost:3000/api/v1/users/
 Content-Type: application/json
 
 {

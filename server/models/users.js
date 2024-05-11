@@ -14,7 +14,7 @@ async function save() {
     return fs.writeFile(userPath, JSON.stringify(data, null, 2));
 }
 /**
- * @typedef {import('../../client/src/model/users').User} User
+ * @typedef {import('/client/src/model/users').User} User
  * */
 
 /**

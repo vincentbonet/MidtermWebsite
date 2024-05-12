@@ -32,35 +32,8 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import axios from 'axios';
-
 let showDropdown = ref(false);
 
-/*async function loginAsRobert() {
-  try {
-    const response = await axios.post('/api/users/login', {
-      email: 'robert@example.com',
-      password: 'password'
-    });
-    if (response.status === 200) {
-      isLoggedIn.value = true;
-    }
-  } catch (error) {
-    console.error("Login failed:", error.message);
-  }
-}
-
-async function logout() {
-  try {
-    const response = await axios.post('/api/users/logout');
-    if (response.status === 200) {
-      isLoggedIn.value = false;
-    }
-  } catch (error) {
-    console.error("Logout failed:", error.message);
-  }
-}
-*/
 
 function toggleDropdown() {
   showDropdown.value = !showDropdown.value;

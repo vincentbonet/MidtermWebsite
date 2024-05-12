@@ -1,13 +1,22 @@
-require('dotenv').config();
-const path = require('path');
 const express = require('express');
-const usersRouter = require('./controllers/users');
-const { authenticate, authorize } = require('./middleware/auth');
+const path = require('path');
+const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
+dotenv.config();
 
+//Intializing the express app
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+//Logging the port
 console.log('PORT:', PORT);
+
+//Importing the middleware
+const { authenticate, authorize, parseAuthToken} = require('./middleware/auth');
+
+//Import routes 
+const usersRouter = require('./controllers/users');
+const activityRouter = require('./controllers/activity');
 
 app
     //serving the static files from the client
@@ -23,6 +32,8 @@ app
     })
     //User routes
     .use('/api/v1/users', usersRouter)
+    //Activity routes
+    .use('/api/v1/activity', activityRouter)
     //CORS handling
     .use((req, res, next) => { 
         res.setHeader('Access-Control-Allow-Origin', '*');

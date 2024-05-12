@@ -18,7 +18,7 @@ exports.authorize = function(role) {
     };
 }
 
-function parseAuthToken(token){
+exports.parseAuthToken = function(token) {
     try {
         return jwt.decode(token) 
     } catch (error) {

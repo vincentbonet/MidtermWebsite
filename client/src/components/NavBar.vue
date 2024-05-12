@@ -31,8 +31,9 @@
 </template>
 
 <script>
+
 import { ref, computed } from 'vue';
-import { parseAuthToken } from 'server/middleware/auth.js';
+import { parseAuthToken } from '../middleware/auth.js';
 
 export default {
   setup() {

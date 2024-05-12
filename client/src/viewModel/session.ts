@@ -1,7 +1,7 @@
 import type { User } from "../model/users";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import * as myfetch from "../model/myFetch";
+import * as myFetch from "../model/myFetch";
 import { useToast }  from "vue-toastification";
 
 const session = reactive({
@@ -37,7 +37,7 @@ export const refSession = () => session;
 export function api<T>(action: string, data?: unknown, method?: string) {
     session.isLoading++;
 
-    return myfetch.api<T>(action, data, method)
+    return myFetch.api<T>(action, data, method)
         .then(x => {
             if (!x.isSuccess) {
                 showError(x);

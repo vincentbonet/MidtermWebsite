@@ -28,5 +28,35 @@
             "image": "https://example.com/image3.jpg",
             "description": "Evening run"
         }
+    },
+    {
+        "date": "2022-01-04",
+        "duration": 55,
+        "exerciseData": {
+            "steps": 4500,
+            "caloriesBurned": 180,
+            "image": "https://example.com/image4.jpg",
+            "description": "Morning walk"
+        }
+    },
+    {
+        "date": "2022-01-05",
+        "duration": 75,
+        "exerciseData": {
+            "steps": 6000,
+            "caloriesBurned": 250,
+            "image": "https://example.com/image5.jpg",
+            "description": "Afternoon jog"
+        }
+    },
+    {
+        "date": "2022-01-06",
+        "duration": 80,
+        "exerciseData": {
+            "steps": 5500,
+            "caloriesBurned": 220,
+            "image": "https://example.com/image6.jpg",
+            "description": "Evening walk"
+        }
     }
 ]

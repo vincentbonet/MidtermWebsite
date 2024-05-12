@@ -1,8 +1,9 @@
 import type { User } from "../model/users";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import * as myFetch from "../model/myFetch";
-import { useToast }  from "vue-toastification";
+import * as myFetch from "../model/myfetch"; 
+
+import { useToast } from "vue-toastification";
 
 const session = reactive({
     user: null as User | null,

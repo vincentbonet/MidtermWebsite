@@ -1,3 +1,5 @@
+import jwt from 'jsonwebtoken';
+
 exports.authenticate = function(req, res, next) {
     if (req.isAuthenticated()) {
         return next(); 
@@ -15,16 +17,12 @@ exports.authorize = function(role) {
         }
     };
 }
-module.exports.parseAuthToken = function(authToken) {
+
+function parseAuthToken(token){
     try {
-        const parsedToken = JSON.parse(authToken);
-        if (parsedToken.isAdmin) {
-            console.log('Admin functionality enabled');
-        } else {
-            console.log('Regular user functionality');
-        }
+        return jwt.decode(token) 
     } catch (error) {
-        console.error('Failed to parse authentication token:', error);
+        console.error('Failed to decode token', error);
+        return null;
     }
 }
-

@@ -22,27 +22,46 @@
           <div v-if="!isLoggedIn">
             <div class="relative" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
               <a class="nav-link" @click="toggleDropdown">Log in</a>
-        </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   </nav>
 </template>
 
-<script setup lang="ts">
+<script>
 import { ref, computed } from 'vue';
-let showDropdown = ref(false);
+import { parseAuthToken } from 'server/middleware/auth.js';
 
+export default {
+  setup() {
+    let showDropdown = ref(false);
 
-function toggleDropdown() {
-  showDropdown.value = !showDropdown.value;
-}
+    function toggleDropdown() {
+      showDropdown.value = !showDropdown.value;
+    }
 
-const isLoggedIn = ref(false);
-const friendsLink = computed(() => isLoggedIn.value ? '/friendsactivity': '/noti')
-const myActivityLink = computed(() => isLoggedIn.value ? '/myactivity' : '/noti');
-const adminLink = computed(() => isLoggedIn.value ? '/admin' : '/noti');
+    const token = localStorage.getItem('token');
+    const decoded = parseAuthToken(token);
+    const isAdmin = ref(decoded && decoded.username === 'admin' && decoded.isAdmin);
+    const isLoggedIn = ref(Boolean(token));
+
+    const myActivityLink = computed(() => isLoggedIn.value ? '/myactivity' : '/login');
+    const friendsLink = computed(() => isLoggedIn.value ? '/friendsactivity' : '/login');
+    const adminLink = computed(() => isAdmin.value ? '/admin' : '/login');
+
+    return {
+      showDropdown,
+      toggleDropdown,
+      myActivityLink,
+      friendsLink,
+      adminLink,
+      isLoggedIn,
+      isAdmin
+    };
+  }
+};
 </script>
 
 <style scoped>

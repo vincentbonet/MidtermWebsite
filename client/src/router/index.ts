@@ -18,7 +18,8 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
-    component: admin
+    component: admin,
+    meta: { requiresAuth: true, role: 'admin' }
   },
   {
     path: '/friendsactivity',
@@ -56,6 +57,7 @@ const routes = [
     component: noti
   }
 ];
+
 const router = createRouter({
   history: createWebHistory('/'),
   routes

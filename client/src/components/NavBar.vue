@@ -32,37 +32,8 @@
 
 <script>
 
-import { ref, computed } from 'vue';
-import { parseAuthToken } from '../middleware/auth.js';
-
-export default {
-  setup() {
-    let showDropdown = ref(false);
-
-    function toggleDropdown() {
-      showDropdown.value = !showDropdown.value;
-    }
-
-    const token = localStorage.getItem('token');
-    const decoded = parseAuthToken(token);
-    const isAdmin = ref(decoded && decoded.username === 'admin' && decoded.isAdmin);
-    const isLoggedIn = ref(Boolean(token));
-
-    const myActivityLink = computed(() => isLoggedIn.value ? '/myactivity' : '/login');
-    const friendsLink = computed(() => isLoggedIn.value ? '/friendsactivity' : '/login');
-    const adminLink = computed(() => isAdmin.value ? '/admin' : '/login');
-
-    return {
-      showDropdown,
-      toggleDropdown,
-      myActivityLink,
-      friendsLink,
-      adminLink,
-      isLoggedIn,
-      isAdmin
-    };
-  }
-};
+// I need to make my store.js work with the auth token, and so that i can access certain files as Robert the admin
+// I also eneed 
 </script>
 
 <style scoped>

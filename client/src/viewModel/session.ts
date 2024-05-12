@@ -1,4 +1,4 @@
-import { User } from "../model/users";
+import type { User } from "../model/users";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import * as myfetch from "../model/myFetch";

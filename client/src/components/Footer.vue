@@ -13,5 +13,8 @@
   </script>
   
   <style scoped>
+  footer {
+    background-color: #363736;
+  }
   </style>
   

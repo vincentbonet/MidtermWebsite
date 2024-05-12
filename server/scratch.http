@@ -1,55 +1,78 @@
 ###
+### GET /protected-route (without authentication)
+###
+
+GET http://localhost:3000/protected-route
+
+###
+
+###
+### GET /admin-route (without authentication)
+###
+
+GET http://localhost:3000/admin-route
+
+###
+
+###
+### GET /protected-route (with authentication)
+### Add authentication token or session cookie if required
+
+GET http://localhost:3000/protected-route
+
+###
+
+###
+### GET /admin-route (with authentication and admin role)
+### Add authentication token or session cookie if required
+
+GET http://localhost:3000/admin-route
+
+###
+
+###
+### GET /api/users (sample user endpoint)
+###
+
 GET http://localhost:3000/api/v1/users
 
 ###
-GET http://localhost:3000/api/v1/users/3
 
 ###
-GET http://localhost:3000/api/v1/users/search?q=plot
+### POST /api/users (create user endpoint)
+### Add request body with user data
 
-###
-DELETE http://localhost:3000/api/v1/users/1
-
-###
 POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "testpassword"
 }
 
 ###
-PATCH http://localhost:3000/api/v1/users/31
+
+###
+### PUT /api/users/:id (update user endpoint)
+### Replace :id with the ID of the user to update
+### Add request body with updated user data
+
+PUT http://localhost:3000/api/v1/users/
 Content-Type: application/json
 
 {
-    "firstName": "Robert",
-}
-
-// ############################################################################################
-// Products
-
-###
-GET http://localhost:3000/api/v1/products
-
-###
-GET http://localhost:3000/api/v1/products/3
-
-###
-GET http://localhost:3000/api/v1/products/search?q=5g 
-
-###
-DELETE http://localhost:3000/api/v1/products/1
-
-###
-POST http://localhost:3000/api/v1/products
-Content-Type: application/json
-
-{
+  "username": "updateduser",
+  "email": "updated@example.com",
+  "password": "updatedpassword"
 }
 
 ###
-PATCH http://localhost:3000/api/v1/products/31
-Content-Type: application/json
 
-{
-}
+###
+### DELETE /api/users/:id (delete user endpoint)
+### Replace :id with the ID of the user to delete
+
+DELETE http://localhost:3000/api/v1/users/1
+
+###

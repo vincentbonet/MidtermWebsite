@@ -1,37 +1,42 @@
 require('dotenv').config();
 const path = require('path');
 const express = require('express');
+const usersRouter = require('./controllers/users');
+const { authenticate, authorize } = require('./middleware/auth');
 
 const app = express();
-const PORT = process.env.PORT ?? 3000; 
+const PORT = process.env.PORT || 3000;
+
+console.log('PORT:', PORT);
 
 app
-    .use(express.static('client/dist')) 
+    //serving the static files from the client
+    .use('/', express.static(path.join(__dirname, '../client/dist')))
+    //parse the JSON body
     .use(express.json())
+    //Protected routes 
+    .get('/protected-route', authenticate, (req, res) => {
+        res.json({ message: 'This is a protected route' });
+    })
+    .get('/admin-route', authenticate, authorize('admin'), (req, res) => {
+        res.json({ message: 'This is an admin-only route' });
+    })
+    //User routes
+    .use('/api/v1/users', usersRouter)
+    //CORS handling
     .use((req, res, next) => { 
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', '*');
         res.setHeader('Access-Control-Allow-Headers', '*');
+        if(req.method === 'OPTIONS') {
+            return res.sendStatus(200);
+        }
         next();
-    }) 
-
-// 404 
-app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, 'client/dist/index.html'));
-});
-
-// Error handling
-app.use((err, req, res, next) => {
-    console.error(err);
-    /** @type {ErrorDataEnvelope } */
-    const results = { 
-        isSuccess: false,
-        message: err.message || 'Internal Server Error',
-        data: null,
-    };
-    res.status(500).send(results);
-});
-
+    })
+    //Catch all route for Vue
+    .get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    });
 app.listen(PORT, () => {
-    console.log(`App listening at http://localhost:${PORT}`)
+    console.log(`Server is listening on http://localhost:${PORT}`);
 });

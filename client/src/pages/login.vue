@@ -29,8 +29,11 @@ import Footer from '../components/Footer.vue';
       </form>
     </div>
   </div>
-  <Footer />
+  <Footer></Footer>
 </template>
 
 <style scoped>
+.bg-gray-800 {
+  background-color: #111111;
+}
 </style>

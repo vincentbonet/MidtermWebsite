@@ -1,0 +1,75 @@
+{
+    "users": [
+        {
+            "id": 5,
+            "name": "John Doe",
+            "exerciseData": {
+                "date": "2022-10-01",
+                "duration": "1 hour",
+                "steps": 7000,
+                "caloriesBurned": 450,
+                "heartRate": 75
+            }
+        },
+        {
+            "id": 6,
+            "name": "Jane Smith",
+            "age": 25,
+            "exerciseData": {
+                "date": "2022-10-02",
+                "duration": "45 minutes",
+                "steps": 9000,
+                "caloriesBurned": 550,
+                "heartRate": 80
+            }
+        },
+        {
+            "id": 7,
+            "name": "Michael Johnson",
+            "age": 35,
+            "exerciseData": {
+                "date": "2022-10-03",
+                "duration": "30 minutes",
+                "steps": 10000,
+                "caloriesBurned": 700,
+                "heartRate": 85
+            }
+        },
+        {
+            "id": 8,
+            "name": "Sarah Davis",
+            "age": 28,
+            "exerciseData": {
+                "date": "2022-10-04",
+                "duration": "1 hour 15 minutes",
+                "steps": 6000,
+                "caloriesBurned": 400,
+                "heartRate": 70
+            }
+        },
+        {
+            "id": 9,
+            "name": "David Wilson",
+            "age": 32,
+            "exerciseData": {
+                "date": "2022-10-05",
+                "duration": "50 minutes",
+                "steps": 8000,
+                "caloriesBurned": 500,
+                "heartRate": 75
+            }
+        },
+        {
+            "id": 10,
+            "name": "Jennifer Brown",
+            "age": 27,
+            "exerciseData": {
+                "date": "2022-10-06",
+                "duration": "1 hour 30 minutes",
+                "steps": 5000,
+                "caloriesBurned": 300,
+                "heartRate": 80
+            }
+        }
+    ]
+}

@@ -44,7 +44,7 @@ import Footer from '../components/Footer.vue';
 import EditAndDelete from '../components/EditAndDelete.vue';
 import profile1 from '../assets/profile1.jpg';
 import profile2 from '../assets/profile2.jpg';
-import profile3 from '../assets/profile3.jpg';
+
 
 export default {
   components: {
@@ -67,15 +67,7 @@ export default {
           lastName: 'Pickering',
           email: 'emily.pickering@example.com',
           handle: 'emilypickering',
-          isAdmin: false,
-        },
-        {
-          picture: profile3,
-          firstName: 'Henry',
-          lastName: 'Becker',
-          email: 'henry.becker@example.com',
-          handle: 'henrybecker',
-          isAdmin: false,
+          isAdmin: true,
         },
       ],
       newUser: {
@@ -115,4 +107,10 @@ export default {
 </script>
 
 <style scoped>
+body{ 
+  background-color: #1d1e1d !important;
+}
+.bg-gray-800 {
+  background-color: #111111;
+}
 </style>

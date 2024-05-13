@@ -6,10 +6,7 @@
     </footer>
   </template>
   
-  <script setup lang = "ts">
-  export default {
-    name: 'Footer'
-  }
+  <script setup lang="ts">
   </script>
   
   <style scoped>

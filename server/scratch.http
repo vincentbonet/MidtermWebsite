@@ -2,7 +2,7 @@
 ### GET /protected-route (without authentication)
 ###
 
-GET http://localhost:3000/protected-route
+GET https://localhost:3000/protected-route
 
 ###
 
@@ -10,7 +10,7 @@ GET http://localhost:3000/protected-route
 ### GET /admin-route (without authentication)
 ###
 
-GET http://localhost:3000/admin-route
+GET https://localhost:3000/admin-route
 
 ###
 
@@ -18,7 +18,7 @@ GET http://localhost:3000/admin-route
 ### GET /protected-route (with authentication)
 ### Add authentication token or session cookie if required
 
-GET http://localhost:3000/protected-route
+GET https://localhost:3000/protected-route
 
 ###
 
@@ -26,7 +26,7 @@ GET http://localhost:3000/protected-route
 ### GET /admin-route (with authentication and admin role)
 ### Add authentication token or session cookie if required
 
-GET http://localhost:3000/admin-route
+GET s://localhost:3000/admin-route
 
 ###
 
@@ -34,7 +34,7 @@ GET http://localhost:3000/admin-route
 ### GET /api/users (sample user endpoint)
 ###
 
-GET http://localhost:3000/api/v1/users
+GET https://localhost:3000/api/v1/users
 
 ###
 
@@ -42,7 +42,7 @@ GET http://localhost:3000/api/v1/users
 ### POST /api/users (create user endpoint)
 ### Add request body with user data
 
-POST http://localhost:3000/api/v1/users
+POST https://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
@@ -58,7 +58,7 @@ Content-Type: application/json
 ### Replace :id with the ID of the user to update
 ### Add request body with updated user data
 
-PUT http://localhost:3000/api/v1/users/
+PUT https://localhost:3000/api/v1/users/
 Content-Type: application/json
 
 {
@@ -73,6 +73,6 @@ Content-Type: application/json
 ### DELETE /api/users/:id (delete user endpoint)
 ### Replace :id with the ID of the user to delete
 
-DELETE http://localhost:3000/api/v1/users/1
+DELETE https://localhost:3000/api/v1/users/1
 
 ###

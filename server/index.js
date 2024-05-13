@@ -49,5 +49,5 @@ app
         res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });
 app.listen(PORT, () => {
-    console.log(`Server is listening on http://localhost:${PORT}`);
+    console.log(`Server is listening on https://localhost:${PORT}`);
 });

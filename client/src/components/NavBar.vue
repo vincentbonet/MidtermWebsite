@@ -31,9 +31,8 @@
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
 
-// I need to make my store.js work with the auth token, and so that i can access certain files as Robert the admin
-// I also eneed 
 </script>
 
 <style scoped>

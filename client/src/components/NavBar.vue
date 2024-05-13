@@ -25,9 +25,10 @@
   </nav>
 </template>
 
-<script>
+<script setup lang = "ts">
 import { RouterLink } from 'vue-router';
 import { LoginBadge } from '../components/LoginBadge.vue';
+
 </script>
 
 <style scoped>

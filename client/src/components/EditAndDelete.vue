@@ -7,8 +7,7 @@
     </div>
   </template>
   
-  <script>
-  export default {
+  <script setup lang = "ts">
     props: {
       index: {
         type: Number,
@@ -23,6 +22,5 @@
         this.$emit('delete', this.index);
       }
     }
-  };
   </script>
   

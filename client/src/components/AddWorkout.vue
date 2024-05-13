@@ -25,29 +25,29 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { ref } from 'vue';
-import { api } from "../viewModel/session";
-import { Activity } from "../model/activity";
+import { api } from '../viewModel/session';
+import type { Activity } from '../model/activites';
 
-export default {
-  setup() {
-    const workouts = ref([]);
-    const newWorkout = ref({
-      date: '',
-      duration: null,
-      exerciseData: {
-        steps: null,
-        caloriesBurned: null,
-        image: '',
-        description: '',
-      },
+interface Workout {
+  name: string;
+  distance: number;
+  duration: string;
+}
+
+
+    const workouts = ref<Activity[]>([]);
+    const newWorkout = ref<Workout>({
+      name: '',
+      distance: 0,
+      duration: '',
     });
 
     const addWorkout = async () => {
-      if (newWorkout.value.date && newWorkout.value.duration !== null && newWorkout.value.exerciseData) {
+      if (newWorkout.value.name && newWorkout.value.distance !== null && newWorkout.value.duration) {
         try {
-          const data = await api<Activity>("activity", {
+          const data = await api<Activity>('activity', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export default {
           });
 
           workouts.value.unshift(data);
-          newWorkout.value = { date: '', duration: null, exerciseData: { steps: null, caloriesBurned: null, image: '', description: '' } };
+          newWorkout.value = { name: '', distance: 0, duration: '' };
         } catch (error) {
           console.error('There has been a problem with your fetch operation:', error);
         }
@@ -65,11 +65,5 @@ export default {
       }
     };
 
-    return {
-      workouts,
-      newWorkout,
-      addWorkout
-    };
-  }
-};
+
 </script>

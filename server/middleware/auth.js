@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
 exports.parseAuthToken = function(req, res, next) {
     const token = req.header('Authorization');

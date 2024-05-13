@@ -4,6 +4,7 @@
     "description": "- Create another repo",
     "author": "",
     "license": "ISC",
+    "type": "module", 
     "scripts": {
         "build": "npm i --production && cd client && npm i && npm run build",
         "start": "node server/index.js",

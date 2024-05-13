@@ -18,12 +18,7 @@
           </div>
         </div>
         <div class="flex items-center">
-          <router-link v-if="!isLoggedIn" to="/signup" class="nav-link">Sign Up</router-link>
-          <div v-if="!isLoggedIn">
-            <div class="relative" @mouseover="showDropdown = true" @mouseleave="showDropdown = false">
-              <a class="nav-link" @click="toggleDropdown">Log in</a>
-            </div>
-          </div>
+          <LoginBadge></LoginBadge>
         </div>
       </div>
     </div>
@@ -32,7 +27,14 @@
 
 <script>
 import { RouterLink } from 'vue-router';
+import { LoginBadge } from '../components/LoginBadge.vue';
 
+export default {
+  components: {
+    RouterLink,
+    LoginBadge
+  },
+}
 </script>
 
 <style scoped>

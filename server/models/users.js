@@ -87,7 +87,11 @@ async function login(email, password) {
     if (!user) {
         throw new Error("Invalid email or password");
     }
-    return user;
+    //generating JWT token 
+    const token = jwt.sign({ id: user.id, email: user.email}, 'secret');
+    return {
+        ...user,
+        token};
 }
 
 

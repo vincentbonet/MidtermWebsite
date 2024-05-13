@@ -24,7 +24,6 @@ app
     //parse the JSON body
     .use(express.json())
     //Protected routes 
-    
     .get('/protected-route', parseAuthToken, (req, res) => {
         res.json({ message: 'This is a protected route' });
     })

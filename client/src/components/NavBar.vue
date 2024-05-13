@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="flex items-center">
-          <LoginBadge></LoginBadge>
+          <LoginBadge />
         </div>
       </div>
     </div>

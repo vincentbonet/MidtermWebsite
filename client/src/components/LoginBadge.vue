@@ -25,7 +25,6 @@
 import { getUsers, type User } from '../model/users';
 import { refSession, useLogin } from '../viewModel/session';
 import { ref } from 'vue';
-
 const session = refSession();
 
 const users = ref([] as User[])
@@ -46,3 +45,7 @@ function doLogout() {
 
 <style scoped>
 </style>
+
+
+
+

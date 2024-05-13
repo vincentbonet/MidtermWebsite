@@ -15,7 +15,6 @@ export interface User {
     admin: boolean;
 }
 
-export async function getUsers() {
-    const data = await api<User[]>("users");
-    return data ? data.data : [];
+export function getUsers() {
+    return api<User[]>('users');
 }

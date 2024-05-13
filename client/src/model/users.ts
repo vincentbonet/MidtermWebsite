@@ -12,6 +12,7 @@ export interface User {
     birthDate: string;
     image: string;
     role: string;
+    admin: boolean;
 }
 
 export async function getUsers() {

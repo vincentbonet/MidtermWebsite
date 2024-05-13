@@ -31,9 +31,9 @@ app
     //User routes
     .use('/api/v1/users', usersRouter)
     //Activity routes
-    .use('/api/v1/activity', activityRouter)
+    .use('/api/v1/activities', activityRouter)
     //Exercise routes
-    .use('/api/v1/exercise', exerciseRouter)
+    .use('/api/v1/exercises', exerciseRouter)
     //CORS handling
     .use((req, res, next) => { 
         res.setHeader('Access-Control-Allow-Origin', '*');

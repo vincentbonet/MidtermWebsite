@@ -1,8 +1,5 @@
 const express = require('express');
 const exercises = require('../models/exercises');
-const { Exercise } = require('../client/src/model/exercises'); 
-const { DataEnvelope, DataListEnvelope } = require('../client/src/model/transportTypes'); 
-
 const router = express.Router();
 
 /**

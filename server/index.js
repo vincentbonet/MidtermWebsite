@@ -16,7 +16,8 @@ const { parseAuthToken} = require('./middleware/auth');
 
 //Import routes 
 const usersRouter = require('./controllers/users');
-const activityRouter = require('./controllers/activity');
+const activityRouter = require('./controllers/activities');
+const exerciseRouter = require('./controllers/exercises');
 
 app
     //serving the static files from the client
@@ -31,6 +32,8 @@ app
     .use('/api/v1/users', usersRouter)
     //Activity routes
     .use('/api/v1/activity', activityRouter)
+    //Exercise routes
+    .use('/api/v1/exercise', exerciseRouter)
     //CORS handling
     .use((req, res, next) => { 
         res.setHeader('Access-Control-Allow-Origin', '*');

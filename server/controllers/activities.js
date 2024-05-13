@@ -1,8 +1,5 @@
 const express = require('express');
 const activities = require('../models/activities');
-const { Activity } = require('../client/src/model/activities'); // Sample typedef for Activity model
-const { DataEnvelope, DataListEnvelope } = require('../client/src/model/transportTypes'); // Sample typedefs for DataEnvelope and DataListEnvelope
-
 const router = express.Router();
 
 /**

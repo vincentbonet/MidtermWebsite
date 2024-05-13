@@ -9,6 +9,10 @@ const session  = reactive({
     isLoading: 0,
 });
 
+export function refSession(){
+    return session;
+}
+
 export function useLogin() {
     const router = useRouter();
     return {

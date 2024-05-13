@@ -28,13 +28,6 @@
 <script>
 import { RouterLink } from 'vue-router';
 import { LoginBadge } from '../components/LoginBadge.vue';
-
-export default {
-  components: {
-    RouterLink,
-    LoginBadge
-  },
-}
 </script>
 
 <style scoped>

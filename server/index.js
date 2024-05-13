@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 console.log('PORT:', PORT);
 
 //Importing the middleware
-const { authenticate, authorize, parseAuthToken} = require('./middleware/auth');
+const { parseAuthToken} = require('./middleware/auth');
 
 //Import routes 
 const usersRouter = require('./controllers/users');
@@ -24,11 +24,9 @@ app
     //parse the JSON body
     .use(express.json())
     //Protected routes 
-    .get('/protected-route', authenticate, (req, res) => {
+    
+    .get('/protected-route', parseAuthToken, (req, res) => {
         res.json({ message: 'This is a protected route' });
-    })
-    .get('/admin-route', authenticate, authorize('admin'), (req, res) => {
-        res.json({ message: 'This is an admin-only route' });
     })
     //User routes
     .use('/api/v1/users', usersRouter)

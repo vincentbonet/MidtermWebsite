@@ -18,7 +18,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { api } from '../model/myfetch';
+import { api } from '../viewModel/session';
 
 const users = ref([]);
 const showModal = ref(false);

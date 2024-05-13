@@ -27,20 +27,39 @@
 
 <script>
 import { ref } from 'vue';
+import { api } from "../viewModel/session";
+import { Activity } from "../model/activity";
 
 export default {
   setup() {
     const workouts = ref([]);
     const newWorkout = ref({
-      name: '',
-      distance: null,
-      duration: '',
+      date: '',
+      duration: null,
+      exerciseData: {
+        steps: null,
+        caloriesBurned: null,
+        image: '',
+        description: '',
+      },
     });
 
-    const addWorkout = () => {
-      if (newWorkout.value.name && newWorkout.value.distance !== null && newWorkout.value.duration) {
-        workouts.value.unshift({ ...newWorkout.value });
-        newWorkout.value = { name: '', distance: null, duration: '' };
+    const addWorkout = async () => {
+      if (newWorkout.value.date && newWorkout.value.duration !== null && newWorkout.value.exerciseData) {
+        try {
+          const data = await api<Activity>("activity", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newWorkout.value),
+          });
+
+          workouts.value.unshift(data);
+          newWorkout.value = { date: '', duration: null, exerciseData: { steps: null, caloriesBurned: null, image: '', description: '' } };
+        } catch (error) {
+          console.error('There has been a problem with your fetch operation:', error);
+        }
       } else {
         alert('Please fill in all workout details.');
       }

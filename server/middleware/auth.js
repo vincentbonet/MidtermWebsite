@@ -1,28 +1,14 @@
 import jwt from 'jsonwebtoken';
 
-exports.authenticate = function(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next(); 
-    } else {
-        return res.status(401).json({ message: 'Unauthorized' }); 
-    }
-}
+exports.parseAuthToken = function(req, res, next) {
+    const token = req.header('Authorization');
+    if (!token) return res.status(401).send('Access Denied: No Token Provided!');
 
-exports.authorize = function(role) {
-    return (req, res, next) => {
-        if (req.user && req.user.role === role) {
-            return next(); 
-        } else {
-            return res.status(403).json({ message: 'Forbidden' }); 
-        }
-    };
-}
-
-exports.parseAuthToken = function(token) {
     try {
-        return jwt.decode(token) 
-    } catch (error) {
-        console.error('Failed to decode token', error);
-        return null;
+        const verified = jwt.verify(token, process.env.TOKEN_SECRET);
+        req.user = verified;
+        next();
+    } catch (err) {
+        res.status(400).send('Invalid Token');
     }
 }

@@ -1,7 +1,7 @@
 import type { User } from "../model/users";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import * as myFetch from "../model/myfetch"; 
+import * as myFetch from "../model/myFetch";
 
 import { useToast } from "vue-toastification";
 
@@ -33,8 +33,10 @@ export function useLogin() {
     return { login, logout };
 }
 
+// This is a helper function to get the session object.
 export const refSession = () => session;
 
+// This is a helper function to call the API and handle errors.
 export function api<T>(action: string, data?: unknown, method?: string) {
     session.isLoading++;
 
@@ -48,8 +50,8 @@ export function api<T>(action: string, data?: unknown, method?: string) {
         .finally(() => session.isLoading--);
 }
 
+// This is a helper function to show an error message in a toast.
 const toast = useToast();
-
 export function showError(error: any) {
     console.error(error);
     toast.error(error.message || error);

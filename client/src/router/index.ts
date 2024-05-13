@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { routes } from 'vue-router/auto-routes';
-import { getSession } from '../viewModel/session';
+import { refSession } from '../viewModel/session';
 
 const router = createRouter({ 
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,7 +8,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, _, next) => {
-  const session = getSession();
+  const session = refSession();
   if (to.meta.requiresAuth && !session.user) {
     next({ name: "login" });
   } else {

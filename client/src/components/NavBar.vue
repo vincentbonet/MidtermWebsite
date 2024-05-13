@@ -13,9 +13,10 @@
             <RouterLink to="/admin" class="nav-link">Admin</RouterLink>
             <RouterLink v-if="isLoggedIn && admin" to="/myactivity" class="nav-link">My Activity</RouterLink>
             <RouterLink to="/noti" class="nav-link">Find Buddies</RouterLink>
-        </div>
-        <div class="flex items-center">
-          <LoginBadge />
+          </div>
+          <div class="flex items-center">
+            <LoginBadge />
+          </div>
         </div>
       </div>
     </div>
@@ -23,8 +24,14 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import LoginBadge from './LoginBadge.vue'
+import { ref } from 'vue'
 
+const router = useRouter()
+
+const isLoggedIn = ref(false)
+const admin = ref(false)
 </script>
 
 <style scoped>

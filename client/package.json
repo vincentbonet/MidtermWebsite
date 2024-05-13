@@ -13,6 +13,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "animejs": "^3.2.2",
+    "auto-routes": "^0.0.3",
     "tailwind": "^3.0.0",
     "vue": "^3.4.26",
     "vue-router": "^4.3.2",

@@ -42,7 +42,6 @@ function doLogout() {
     logout();
 }
 </script>
-
 <style scoped>
 </style>
 

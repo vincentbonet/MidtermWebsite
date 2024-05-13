@@ -1,32 +1,43 @@
+require('dotenv').config();
 const express = require('express');
-const path = require('path');
-const dotenv = require('dotenv');
+const path = require('path')
 const jwt = require('jsonwebtoken');
-dotenv.config();
+
+/**  
+ * @typedef {import('../client/src/model/transportTypes').DataEnvelope<null> } ErrorDataEnvelope
+ * */
 
 //Intializing the express app
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-//Logging the port
-console.log('PORT:', PORT);
-
 //Importing the middleware
-const { parseAuthToken} = require('./middleware/auth');
+const { parseAuthToken } = require('./middleware/auth');
 
 //Import routes 
 const usersRouter = require('./controllers/users');
 const activityRouter = require('./controllers/activities');
 const exerciseRouter = require('./controllers/exercises');
 
+//Logging the port
+console.log('PORT:', PORT);
+
 app
-    //serving the static files from the client
-    .use('/', express.static(path.join(__dirname, '../client/dist')))
-    //parse the JSON body
-    .use(express.json())
-    //Protected routes 
-    .get('/protected-route', parseAuthToken, (req, res) => {
-        res.json({ message: 'This is a protected route' });
+ //serving the static files from the client
+ .use('/', express.static(path.join(__dirname, '../client/dist')))
+ //CORS handling
+ .use((req, res, next) => { 
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+    if(req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+})
+app
+    .get('/', (req, res) => {
+        res.send('Hello Robert!');
     })
     //User routes
     .use('/api/v1/users', usersRouter)
@@ -34,20 +45,34 @@ app
     .use('/api/v1/activities', activityRouter)
     //Exercise routes
     .use('/api/v1/exercises', exerciseRouter)
-    //CORS handling
-    .use((req, res, next) => { 
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', '*');
-        res.setHeader('Access-Control-Allow-Headers', '*');
-        if(req.method === 'OPTIONS') {
-            return res.sendStatus(200);
-        }
-        next();
+    //404 
+    .use((req, res) => {
+        res.sendFile(path.join(__dirname,  '../client/dist/index.html'));
+    })
+    // Error handling
+    .use((err, req, res, next) => {
+    console.error(err);
+    /** @type {ErrorDataEnvelope } */
+    const results = { 
+      isSuccess: false,
+      message: err.message || 'Internal Server Error',
+      data: null,
+     };
+    res.status(500).send(results);
+    })
+    //parse the JSON body
+    .use(express.json())
+    //Protected routes 
+    .get('/protected-route', parseAuthToken, (req, res) => {
+        res.json({ message: 'This is a protected route' });
     })
     //Catch all route for Vue
     .get('*', (req, res) => {
         res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });
+
+
+    //Start the server  
 app.listen(PORT, () => {
-    console.log(`Server is listening on http://localhost:${PORT}`);
+    console.log(`App is listening on http://localhost:${PORT}`);
 });

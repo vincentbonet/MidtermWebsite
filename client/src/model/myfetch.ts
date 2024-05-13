@@ -13,17 +13,25 @@ export function rest(url: string, data?: unknown, method?: string) {
         body: data ? JSON.stringify(data) : undefined,
     })
     .then(response => {
-        console.log("response", response)
+        console.log("response", response);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json();
+        // Check if the response is JSON
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            return response.json();
+        } else {
+            // Throw an error with a custom message for non-JSON responses
+            throw new Error("Unexpected response format. Expected JSON.");
+        }
     })
     .catch(error => {
         console.error("Fetch error:", error);
         throw error; 
     });
 }
+
 
 export function api<T>(action: string, data?: unknown, method?: string): Promise<DataEnvelope<T>> {
     return rest(`${API_ROOT}/${action}`, data, method);

@@ -5,7 +5,7 @@
       <button @click="doLogout" class="px-2 py-1 text-sm font-medium text-white bg-red-600 rounded hover:bg-red-700">Not You?</button>
     </div>
     <div v-else>
-      <button class="px-2 py-1 text-sm font-medium text-black bg-white rounded hover:bg-gray-200">Sign up</button>
+      <RouterLink to="/signup" class="px-2 py-1 text-sm font-medium text-black bg-white rounded hover:bg-gray-200" >Sign up</RouterLink>
       <div class="relative inline-block text-left">
         <div>
           <button

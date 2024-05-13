@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Push-up",
+        "description": "Push-ups are a great bodyweight exercise that target the chest, shoulders, and triceps.",
+        "difficulty": "Intermediate",
+        "muscleGroups": ["Chest", "Shoulders", "Triceps"]
+    },
+    {
+        "id": 2,
+        "name": "Squat",
+        "description": "Squats are a fundamental lower body exercise that target the quadriceps, hamstrings, and glutes.",
+        "difficulty": "Beginner",
+        "muscleGroups": ["Quadriceps", "Hamstrings", "Glutes"]
+    },
+    {
+        "id": 3,
+        "name": "Pull-up",
+        "description": "Pull-ups are an excellent upper body exercise that target the back, biceps, and forearms.",
+        "difficulty": "Advanced",
+        "muscleGroups": ["Back", "Biceps", "Forearms"]
+    }
+]

@@ -16,7 +16,6 @@ export function refSession() {
 const toast = useToast();
 
 export function showError(error: any) {
-    console.log("Error", error)
     console.error(error);
     toast.error(error.message || error);
 }

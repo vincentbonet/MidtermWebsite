@@ -1,6 +1,6 @@
-import { Router } from 'express';
-import { getAll, search as _search, get, add, update, remove } from '../models/activities';
-const router = Router();
+const router = require('express').Router();
+const { getAll, get, add, update, remove, _search } = require('../models/activities');
+
 
 /**
  * @typedef {import('../../client/src/model/activities').Activity} Activity
@@ -86,4 +86,4 @@ router
         }).catch(next);
     });
 
-export default router;
+module.exports = router;

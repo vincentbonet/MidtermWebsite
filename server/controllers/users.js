@@ -1,6 +1,5 @@
-import { getAll, search as _search, get, add, login, update, remove } from '../models/users';
-import { Router } from 'express';
-const router = Router();
+const { getAll, search, get, add, login, update, remove } = require('../models/users');
+const router = require('express').Router();
 
 
 /** 
@@ -101,5 +100,4 @@ router
         }).catch(next);
     })
 
-
-export default router;
+module.exports = router;

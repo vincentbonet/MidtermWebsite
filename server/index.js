@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path')
-const jwt = require('jsonwebtoken');
 
 /**  
  * @typedef {import('../client/src/model/transporttypes').DataEnvelope<null> } ErrorDataEnvelope

@@ -10,8 +10,10 @@
         </div>
         <div class="hidden md:flex items-center space-x-4">
           <RouterLink to="/admin" class="nav-link">Admin</RouterLink>
-          <RouterLink to="/noti" class="nav-link">Find Buddies</RouterLink>
-          <RouterLink to="/noti" class="nav-link">My Activities</RouterLink>
+          <RouterLink to="/findbuddies" class="nav-link">Find Buddies</RouterLink>
+          <RouterLink to="/myactivity" class="nav-link">My Activities</RouterLink>
+          <RouterLink to="/statistics" class="nav-link">Statistics</RouterLink>
+          
         </div>
         <div class="flex items-center">
           <LoginBadge />

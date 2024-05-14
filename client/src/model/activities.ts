@@ -1,6 +1,7 @@
 import { api } from "../viewModel/session";
 
 export interface Activity {
+    id: number;
     date: string;
     duration: number;
     exerciseData: {

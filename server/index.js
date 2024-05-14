@@ -17,7 +17,7 @@ const PORT = process.env.PORT ?? 3000;
 app
 
  //serving the static files from the client
- .use(express.static('client/dist'))
+ .use(express.static('../client/dist'))
 
 
  //CORS handling

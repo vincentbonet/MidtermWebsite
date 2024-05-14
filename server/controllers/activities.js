@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, get, add, update, remove, } = require('../models/activities');
+const { getAll, search, get, add, update, remove, } = require('../models/activities');
 
 
 /**

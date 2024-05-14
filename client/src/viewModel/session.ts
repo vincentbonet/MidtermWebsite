@@ -1,4 +1,3 @@
-import type { DataEnvelope } from "../model/transporttypes"
 import type { User } from "../model/users";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";

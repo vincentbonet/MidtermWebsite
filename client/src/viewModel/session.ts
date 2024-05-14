@@ -9,30 +9,6 @@ const session = reactive({
     isLoading: 0,
 });
 
-export function refSession() {
-    return session;
-}
-
-const toast = useToast();
-
-export function showError(error: any) {
-    console.error(error);
-    toast.error(error.message || error);
-}
-
-export function api<T>(action: string, data?: unknown, method?: string) {
-    session.isLoading++;
-    return rest.api<T>(action, data, method)
-        .then(x => {
-            if (!x.isSuccess) {
-                showError(x);
-            }
-            return x;
-        })
-        .catch(showError)
-        .finally(() => session.isLoading--);
-}
-
 export function useLogin() {
     const router = useRouter();
     return {
@@ -49,4 +25,26 @@ export function useLogin() {
             router.push("/");
         },
     }
+}
+
+export const refSession = () => session;
+
+const toast = useToast();
+
+export function api<T>(action: string, data?: unknown, method?: string) {
+    session.isLoading++;
+    return rest.api<T>(action, data, method)
+        .then(x => {
+            if (!x.isSuccess) {
+                showError(x);
+            }
+            return x;
+        })
+        .catch(showError)
+        .finally(() => session.isLoading--);
+}
+
+export function showError(error: any) {
+    console.error(error);
+    toast.error(error.message || error);
 }

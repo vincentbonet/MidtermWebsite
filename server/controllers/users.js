@@ -26,7 +26,7 @@ router
 
         const search = req.query.q;
         if(typeof search !== 'string' ) throw new Error('search is required');
-        _search(search)
+        search(search)
         .then(result => {
             /** @type { UserDataListEnvelope } */
             const response = {

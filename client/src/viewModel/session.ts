@@ -29,8 +29,6 @@ export function useLogin() {
 
 export const refSession = () => session;
 
-const toast = useToast();
-
 export function api<T>(action: string, data?: unknown, method?: string) {
     session.isLoading++;
     return rest.api<T>(action, data, method)
@@ -44,6 +42,7 @@ export function api<T>(action: string, data?: unknown, method?: string) {
         .finally(() => session.isLoading--);
 }
 
+const toast = useToast();
 export function showError(error: any) {
     console.error(error);
     toast.error(error.message || error);

@@ -4,6 +4,7 @@ const path = require('path');
 const usersRouter = require('./controllers/users');
 const activityRouter = require('./controllers/activities');
 const exerciseRouter = require('./controllers/exercises');
+const { parseAuthToken } = require('./middleware/auth');
 
 /**  
  * @typedef {import('../client/src/model/transporttypes').DataEnvelope<null> } ErrorDataEnvelope
@@ -17,6 +18,7 @@ app
 
  //serving the static files from the client
  .use(express.static('client/dist'))
+
 
  //CORS handling
  .use(express.json())

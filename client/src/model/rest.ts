@@ -2,6 +2,7 @@ import type { DataEnvelope } from "./transporttypes";
 
 export const API_ROOT = import.meta.env.VITE_API_ROOT;
 
+
 export function rest(url: string, data?: unknown, method?: string, headers?: Record<string, string>){
     return fetch(url, {
         method: method ?? (data ? "POST" : "GET"),
@@ -14,16 +15,8 @@ export function rest(url: string, data?: unknown, method?: string, headers?: Rec
     .then(x => x.json())
 }
 
-export function api<T>(action: string, data?: unknown, method?: string): Promise<DataEnvelope<T>> {
+export function api<T>(action: string, data?: unknown, method?: string): Promise<DataEnvelope<T>>{
     return rest(`${API_ROOT}/${action}`, data, method);
-}
-
-export function refSession() {
-    const session = {
-        user: null,
-        isLoading: 0,
-    };
-    return session;
 }
 
 export function loadScript(url: string, id: string){

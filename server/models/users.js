@@ -14,7 +14,7 @@ async function save() {
     return fs.writeFile(userPath, JSON.stringify(data, null, 2));
 }
 /**
- * @typedef {import('/client/src/model/users').User} User
+ * @typedef {import('../../client/src/model/users').User} User
  * */
 
 /**
@@ -87,7 +87,11 @@ async function login(email, password) {
     if (!user) {
         throw new Error("Invalid email or password");
     }
-    return user;
+    //generating JWT token 
+    const token = jwt.sign({ id: user.id, email: user.email}, 'secret');
+    return {
+        ...user,
+        token};
 }
 
 

@@ -26,7 +26,7 @@ GET http://localhost:3000/protected-route
 ### GET /admin-route (with authentication and admin role)
 ### Add authentication token or session cookie if required
 
-GET http://localhost:3000/admin-route
+GET s://localhost:3000/admin-route
 
 ###
 

@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-center h-screen bg-gray-800">
     <div class="text-center" ref="animationTarget">
-      <h1 class="text-3xl font-semibold text-gray-100 mb-4">Welcome Page</h1>
+      <h1 class="text-3xl font-semibold text-gray-100 mb-4">Welcome!</h1>
       <h2 class="text-lg text-gray-200 mb-8">To use Building Better, Login on the top right.</h2>
     </div>
   </div>

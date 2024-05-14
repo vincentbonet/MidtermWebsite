@@ -1,6 +1,6 @@
 import type { DataEnvelope } from "./transporttypes";
 
-export const ROOT = import.meta.env.VITE_API_ROOT;
+export const API_ROOT = import.meta.env.VITE_API_ROOT;
 
 export function rest(url: string, data?: unknown, method?: string, headers?: Record<string, string>){
     return fetch(url, {
@@ -11,16 +11,11 @@ export function rest(url: string, data?: unknown, method?: string, headers?: Rec
         },
         body: data ? JSON.stringify(data) : undefined,
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        return response.json();
-    })
+    .then(x => x.json())
 }
 
 export function api<T>(action: string, data?: unknown, method?: string): Promise<DataEnvelope<T>> {
-    return rest(`${ROOT}/${action}`, data, method);
+    return rest(`${API_ROOT}/${action}`, data, method);
 }
 
 export function refSession() {
@@ -29,4 +24,19 @@ export function refSession() {
         isLoading: 0,
     };
     return session;
+}
+
+export function loadScript(url: string, id: string){
+    return new Promise<any>((resolve, reject) => {
+        if(document.getElementById(id)){
+            resolve(null);
+            return;
+        }
+        const script = document.createElement("script");
+        script.src = url;
+        script.id = id;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.body.appendChild(script);
+    });
 }

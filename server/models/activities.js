@@ -14,7 +14,7 @@ async function save() {
 }
 
 /**
- * @typedef {import('/client/src/model/activities').Activity} Activity
+ * @typedef {import('../../client/src/model/activities').Activity} Activity
  * */
 
 /**

@@ -4,7 +4,7 @@ const path = require('path')
 const jwt = require('jsonwebtoken');
 
 /**  
- * @typedef {import('../client/src/model/transportTypes').DataEnvelope<null> } ErrorDataEnvelope
+ * @typedef {import('../client/src/model/transporttypes').DataEnvelope<null> } ErrorDataEnvelope
  * */
 
 //Intializing the express app

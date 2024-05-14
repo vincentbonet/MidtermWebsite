@@ -1,16 +1,16 @@
-const express = require('express');
-const activities = require('../models/activities');
-const router = express.Router();
+import { Router } from 'express';
+import { getAll, search as _search, get, add, update, remove } from '../models/activities';
+const router = Router();
 
 /**
- * @typedef {import('../client/src/model/activities').Activity} Activity
- * @typedef {import('../client/src/model/transportTypes').DataEnvelope<Activity>} ActivityDataEnvelope
- * @typedef {import('../client/src/model/transportTypes').DataListEnvelope<Activity>} ActivityDataListEnvelope
+ * @typedef {import('../../client/src/model/activities').Activity} Activity
+ * @typedef {import('../../client/src/model/transporttypes').DataEnvelope<Activity>} ActivityDataEnvelope
+ * @typedef {import('../../client/src/model/transporttypes').DataListEnvelope<Activity>} ActivityDataListEnvelope
  */
 
 router
     .get('/', (req, res, next) => {
-        activities.getAll()
+        getAll()
         .then(all => {
             /** @type { ActivityDataListEnvelope } */
             const response = {
@@ -25,7 +25,7 @@ router
     .get('/search', (req, res, next) => {
         const search = req.query.q;
         if(typeof search !== 'string' ) throw new Error('search is required');
-        activities.search(search)
+        _search(search)
         .then(result => {
             /** @type { ActivityDataListEnvelope } */
             const response = {
@@ -38,7 +38,7 @@ router
     })
     .get('/:id', (req, res, next) => {
         const id = req.params.id;
-        activities.get(+id)
+        get(+id)
         .then(result => {
             /** @type { ActivityDataEnvelope } */
             const response = {
@@ -50,7 +50,7 @@ router
     })
     .post('/', (req, res, next) => {
         const activity = req.body;
-        activities.add(activity)
+        add(activity)
         .then(result => {
             /** @type { ActivityDataEnvelope } */
             const response = {
@@ -63,7 +63,7 @@ router
     .patch('/:id', (req, res, next) => {
         const activity = req.body;
         activity.id = req.params.id;
-        activities.update(activity)
+        update(activity)
         .then(result => {
             /** @type { ActivityDataEnvelope } */
             const response = {
@@ -75,7 +75,7 @@ router
     })
     .delete('/:id', (req, res, next) => {
         const id = req.params.id;
-        activities.remove(+id)
+        remove(+id)
         .then(result => {
             /** @type { ActivityDataEnvelope } */
             const response = {
@@ -86,4 +86,4 @@ router
         }).catch(next);
     });
 
-module.exports = router;
+export default router;

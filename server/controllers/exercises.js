@@ -1,16 +1,16 @@
-const express = require('express');
-const exercises = require('../models/exercises');
-const router = express.Router();
+import { Router } from 'express';
+import { getAll, search as _search, get, add, update, remove } from '../models/exercises';
+const router = Router();
 
 /**
- * @typedef {import('../client/src/model/exercises').Exercise} Exercise
- * @typedef {import('../client/src/model/transportTypes').DataEnvelope<Exercise>} ExerciseDataEnvelope
- * @typedef {import('../client/src/model/transportTypes').DataListEnvelope<Exercise>} ExerciseDataListEnvelope
+ * @typedef {import('../../client/src/model/exercises').Exercise} Exercise
+ * @typedef {import('../../client/src/model/transporttypes').DataEnvelope<Exercise>} ExerciseDataEnvelope
+ * @typedef {import('../../client/src/model/transporttypes').DataListEnvelope<Exercise>} ExerciseDataListEnvelope
  */
 
 router
     .get('/', (req, res, next) => {
-        exercises.getAll()
+        getAll()
         .then(all => {
             /** @type { ExerciseDataListEnvelope } */
             const response = {
@@ -25,7 +25,7 @@ router
     .get('/search', (req, res, next) => {
         const search = req.query.q;
         if(typeof search !== 'string' ) throw new Error('search is required');
-        exercises.search(search)
+        _search(search)
         .then(result => {
             /** @type { ExerciseDataListEnvelope } */
             const response = {
@@ -38,7 +38,7 @@ router
     })
     .get('/:id', (req, res, next) => {
         const id = req.params.id;
-        exercises.get(+id)
+        get(+id)
         .then(result => {
             /** @type { ExerciseDataEnvelope } */
             const response = {
@@ -50,7 +50,7 @@ router
     })
     .post('/', (req, res, next) => {
         const exercise = req.body;
-        exercises.add(exercise)
+        add(exercise)
         .then(result => {
             /** @type { ExerciseDataEnvelope } */
             const response = {
@@ -63,7 +63,7 @@ router
     .patch('/:id', (req, res, next) => {
         const exercise = req.body;
         exercise.id = req.params.id;
-        exercises.update(exercise)
+        update(exercise)
         .then(result => {
             /** @type { ExerciseDataEnvelope } */
             const response = {
@@ -75,7 +75,7 @@ router
     })
     .delete('/:id', (req, res, next) => {
         const id = req.params.id;
-        exercises.remove(+id)
+        remove(+id)
         .then(result => {
             /** @type { ExerciseDataEnvelope } */
             const response = {
@@ -86,4 +86,4 @@ router
         }).catch(next);
     });
 
-module.exports = router;
+export default router;

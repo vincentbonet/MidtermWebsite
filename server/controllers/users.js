@@ -1,17 +1,17 @@
-const users = require('../models/users')
-const express = require('express');
-const app = express.Router();
+import { getAll, search as _search, get, add, login, update, remove } from '../models/users';
+import { Router } from 'express';
+const router = Router();
 
 
 /** 
- * @typedef {import('client/src/model/users').User} User 
- * @typedef {import('client/src/model/transportTypes').DataEnvelope<User> } UserDataEnvelope
- * @typedef {import('client/src/model/transportTypes').DataListEnvelope<User> } UserDataListEnvelope
+ * @typedef {import('../../client/src/model/users').User} User 
+ * @typedef {import('../../client/src/model/transporttypes').DataEnvelope<User> } UserDataEnvelope
+ * @typedef {import('../../client/src/model/transporttypes').DataListEnvelope<User> } UserDataListEnvelope
  * */
 
-app
+router
     .get('/', (req, res, next) => {
-        users.getAll()
+        getAll()
         .then(all => {
             /** @type { UserDataListEnvelope } */
             const response = {
@@ -27,7 +27,7 @@ app
 
         const search = req.query.q;
         if(typeof search !== 'string' ) throw new Error('search is required');
-        users.search(search)
+        _search(search)
         .then(result => {
             /** @type { UserDataListEnvelope } */
             const response = {
@@ -40,7 +40,7 @@ app
     })
     .get('/:id', (req, res, next) => {
         const id = req.params.id;
-        users.get(+id)
+        get(+id)
         .then(result => {
             /** @type { UserDataEnvelope } */
             const response = {
@@ -52,7 +52,7 @@ app
     })
     .post('/', (req, res, next) => {
         const user = req.body;
-        users.add(user)
+        add(user)
         .then(result => {
             /** @type { UserDataEnvelope } */
             const response = {
@@ -64,7 +64,7 @@ app
     })
     .post('/login', (req, res, next) => {
         const { email, password } = req.body;
-        users.login(email, password)
+        login(email, password)
         .then(result => {
             /** @type { UserDataEnvelope } */
             const response = {
@@ -77,7 +77,7 @@ app
     .patch('/:id', (req, res, next) => {
         const user = req.body;
         user.id = req.params.id;
-        users.update(user)
+        update(user)
         .then(result => {
             /** @type { UserDataEnvelope } */
             const response = {
@@ -90,7 +90,7 @@ app
     })
     .delete('/:id', (req, res, next) => {
         const id = req.params.id;
-        users.remove(+id)
+        remove(+id)
         .then(result => {
             /** @type { UserDataEnvelope } */
             const response = {
@@ -102,6 +102,4 @@ app
     })
 
 
-
-
-module.exports = app
+export default router;

@@ -11,7 +11,12 @@ export function rest(url: string, data?: unknown, method?: string, headers?: Rec
         },
         body: data ? JSON.stringify(data) : undefined,
     })
-    .then(x => x.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    })
 }
 
 export function api<T>(action: string, data?: unknown, method?: string): Promise<DataEnvelope<T>> {

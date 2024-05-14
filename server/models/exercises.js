@@ -14,7 +14,7 @@ async function save() {
 }
 
 /**
- * @typedef {import('/client/src/model/exercises').Exercise} Exercise
+ * @typedef {import('../../client/src/model/exercises').Exercise} Exercise
  */
 
 /**

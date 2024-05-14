@@ -33,7 +33,7 @@ app
   })
   // 404 handler
   .use((req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    res.sendFile(path.join(__dirname, ''));
   })
   // Error handling
   .use((err, req, res, next) => {
@@ -47,7 +47,7 @@ app
   })
   // Catch all route for Vue
   .get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    res.sendFile(path.join(__dirname, '../client/dist/'));
   });
 
 // Start the server

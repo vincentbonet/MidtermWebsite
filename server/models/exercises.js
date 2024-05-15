@@ -1,6 +1,5 @@
 const fs = require('fs/promises');
-const path = require('path');
-const exercisePath = path.join(__dirname, '/../data/exercises.json');
+const exercisePath = __dirname + '/../data/exercises.json'
 
 /** @type {Promise<{ items: Exercise[] }>} */
 const promiseData = fs

@@ -13,7 +13,6 @@
           <RouterLink to="/findbuddies" class="nav-link">Find Buddies</RouterLink>
           <RouterLink to="/myactivity" class="nav-link">My Activities</RouterLink>
           <RouterLink to="/statistics" class="nav-link">Statistics</RouterLink>
-
         </div>
         <div class="flex items-center">
           <LoginBadge />

@@ -17,6 +17,7 @@
 <script lang="ts">
 import { onMounted } from 'vue';
 import anime from 'animejs';
+
 import Footer from '../components/Footer.vue';
 
 export default {

@@ -1,4 +1,4 @@
-import './assets/main.css'
+import './assets/style.css'
 import 'vue-toastification/dist/index.css'
 
 import { createApp } from 'vue'
@@ -7,7 +7,6 @@ import router from './router'
 import Toaster from 'vue-toastification'
 
 const app = createApp(App)
-
 app
     .use(router)
     .use(Toaster, {})

@@ -3,6 +3,7 @@ import { RouterView } from 'vue-router'
 import NavBar from "../src/components/NavBar.vue"
 import { ref } from 'vue';
 import { refSession } from './viewModel/session';
+import '@fortawesome/fontawesome-free/css/all.css'
 
 const session = refSession();
 const isLoading = ref(false); 

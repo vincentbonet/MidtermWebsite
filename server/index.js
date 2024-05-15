@@ -16,7 +16,6 @@ const PORT = process.env.PORT || 3000;
 
 // logging start
 console.log('Starting server...');
-console.log('PORT:', PORT);
 
   // Serve static files from the 'dist' directory
   app.use(express.static('client/dist'));

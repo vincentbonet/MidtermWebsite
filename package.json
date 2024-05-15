@@ -4,7 +4,6 @@
     "description": "Final Project for Web Server Programming",
     "author": "",
     "license": "ISC",
-    "type": "commonjs",
     "scripts": {
         "build": "npm i --production && cd client && npm i && npm run build",
         "start": "node server/index.js",

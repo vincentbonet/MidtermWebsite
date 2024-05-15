@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 app
   // Serve static files from the 'dist' directory
-  .use(express.static(path.join(__dirname, 'dist')))
+  .use(express.static(path.join(__dirname, 'client/dist')))
   // CORS handling
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,7 +32,7 @@ app
   })
   // 404
   .use((req, res) => {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
   })
   // Error handling
   .use((err, req, res, next) => {

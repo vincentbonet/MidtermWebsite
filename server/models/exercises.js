@@ -1,5 +1,6 @@
 const fs = require('fs/promises');
 const path = require('path');
+
 const exercisePath = path.join(__dirname, '..', 'data', 'exercises.json');
 
 /** @type {Promise<{ items: Exercise[] }>} */
@@ -79,6 +80,15 @@ async function remove(id) {
     return null;
 }
 
+/**
+ * @param {string} keyword
+ * @returns {Promise<Exercise[]>}
+ */
+async function search(keyword) {
+    const data = await promiseData;
+    return data.items.filter(item => item.name.toLowerCase().includes(keyword.toLowerCase()));
+}
+
 module.exports = {
-    getAll, get, add, update, remove
+    getAll, get, add, update, remove, search
 }

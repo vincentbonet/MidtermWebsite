@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, get, add, update, remove, } = require('../models/activities');
+const { getAll, search, get, add, update, remove, } = require('../models/activities');
 
 
 /**
@@ -23,9 +23,9 @@ router
         
     })
     .get('/search', (req, res, next) => {
-        const search = req.query.q;
-        if(typeof search !== 'string' ) throw new Error('search is required');
-        search(search)
+        const searchQuery = req.query.q;
+        if(typeof searchQuery !== 'string' ) throw new Error('search is required');
+        search(searchQuery)
         .then(result => {
             /** @type { ActivityDataListEnvelope } */
             const response = {

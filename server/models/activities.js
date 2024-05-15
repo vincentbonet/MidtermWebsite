@@ -34,6 +34,18 @@ async function get(id) {
     return data.items.find(item => item.id === id);
 }
 
+/**
+ * 
+ * @param {string} q 
+ * @returns {Promise<Activity[]>} 
+ */
+
+async function search(q) {
+    return (await getAll()).filter(item =>
+        new RegExp(q, 'i').test(item.date)
+    )
+}
+
 async function add(activity) {
     const data = await promiseData;
     activity.id = data.items.length + 1;
@@ -43,7 +55,7 @@ async function add(activity) {
 }
 
 /**
- * @param {Activity} activity
+ * * @param {Activity} activity
  * @returns {Promise<Activity>}
  * */
 async function update(activity) {
@@ -61,7 +73,7 @@ async function update(activity) {
 }
 
 /**
- * @param {number} id
+ * * @param {number} id
  * @returns {Promise<Activity | null>}
  * */
 async function remove(id) {
@@ -72,9 +84,6 @@ async function remove(id) {
         await save()
         return deleted[0];
     }
-    return null;
 }
 
-module.exports = {
-    getAll, get, add, update, remove
-}
+module.exports = { getAll, get, search, add, update, remove };

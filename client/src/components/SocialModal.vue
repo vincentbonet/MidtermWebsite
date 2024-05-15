@@ -1,14 +1,15 @@
 <template>
-  <div class="social-modal">
-    <div v-if="socialData" class="modal-content">
-      <h2>Social Data</h2>
-      <div v-for="post in socialData.posts" :key="post.id" class="post">
+  <div v-if="isOpen" class="social-modal">
+    <div class="modal-content">
+      <div v-if="socialData" v-for="post in socialData.posts" :key="post.id" class="post">
         <h3>{{ post.title }}</h3>
         <p>{{ post.content }}</p>
         <p>Author: {{ post.author }}</p>
         <hr>
       </div>
-      <button @click="closeModal">Close</button>
+      <div>
+        <button @click="closeModal" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mb-4">Close</button>
+      </div>
     </div>
   </div>
 </template>
@@ -47,17 +48,7 @@ export default {
   align-items: center;
 }
 
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-}
-
 .post {
   margin-bottom: 20px;
-}
-
-button {
-  margin-top: 10px;
 }
 </style>

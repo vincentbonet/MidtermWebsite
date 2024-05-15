@@ -2,7 +2,7 @@ const fs = require('fs/promises');
 const path = require('path');
 const userPath = path.join(__dirname, '..', 'data', 'users.json');
 
-/** @type { Promise< { items: User[] } > } */
+/** @type { Promise< { items: import('../../client/src/model/users').User[] } > } */
 const promiseData = fs 
     .access(userPath, fs.constants.F_OK)
     .then(() => fs.readFile(userPath, 'utf-8'))
@@ -30,12 +30,32 @@ async function getAll() {
  * @param {number} id
  * @returns {Promise<User>}
  * */
+
+
+async function get(id) {
+    const data = await promiseData;
+    return data.items.find(item => item.id === id);
+}
+
+/**
+ * 
+ * @param {string} q
+ * @returns {Promise<User[]>}
+ */
+
 async function search(q) {
-    return (await getAll()).filter(item => 
+    return (await getAll()).filter(item =>
         new RegExp(q, 'i').test(item.firstName) ||
         new RegExp(q, 'i').test(item.lastName) ||
-        new RegExp(q, 'i').test(item.email) );
+        new RegExp(q, 'i').test(item.email)
+    )
 }
+
+/**
+ * 
+ * @param {User} user 
+ * @returns {Promise<User>}
+ */
 
 async function add(user) {
     const data = await promiseData;
@@ -87,14 +107,9 @@ async function login(email, password) {
     if (!user) {
         throw new Error("Invalid email or password");
     }
-    //generating JWT token 
-    const token = jwt.sign({ id: user.id, email: user.email}, 'secret');
-    return {
-        ...user,
-        token};
+    return user;
 }
 
-
 module.exports = {
-    getAll, search, add, update, remove, login
+    getAll, get, search, add, update, remove, login
 }

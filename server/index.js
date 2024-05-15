@@ -9,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT ?? 3000;
 
 app
+  .use(express.static('client/dist'))
   // CORS handling
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,10 +20,6 @@ app
     }
     next();
   })
-  // JSON body parsing middleware
-  .use(express.json())
-  // Static files serving
-  .use(express.static('../client/dist'))
   // API routes
   .use('/api/v1/users', usersRouter)
   .use('/api/v1/activities', activityRouter)
@@ -31,9 +28,9 @@ app
   .get('/protected-route', parseAuthToken, (req, res) => {
     res.json({ message: 'This is a protected route' });
   })
-  // 404 handler
+  // 404
   .use((req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    res.sendFile(path.join(__dirname, ''));
   })
   // Error handling
   .use((err, req, res, next) => {
@@ -45,11 +42,6 @@ app
     };
     res.status(500).send(results);
   })
-  // Catch all route for Vue
-  .get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-  });
-
 // Start the server
 app.listen(PORT, () => {
   console.log(`App is listening on http://localhost:${PORT}`);

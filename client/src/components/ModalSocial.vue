@@ -1,14 +1,14 @@
 <template>
   <div class="container mx-auto">
     <div class="grid grid-cols-2 gap-8">
-      <div>
-        <h2 class="text-2xl font-bold mb-4">Activities</h2>
+      <div class="flex flex-col items-center">
+        <h2 class="text-2xl font-bold mb-4 text-white">Activities</h2>
         <ul>
           <li v-for="activity in activities" :key="activity.id" class="mb-2">{{ activity.name }}</li>
         </ul>
       </div>
-      <div>
-        <h2 class="text-2xl font-bold mb-4">Users</h2>
+      <div class="flex flex-col items-center">
+        <h2 class="text-2xl font-bold mb-4 text-white">Users</h2>
         <ul>
           <li v-for="user in users" :key="user.id" class="mb-2">{{ user.name }}</li>
         </ul>
@@ -16,6 +16,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted } from 'vue';
@@ -25,11 +26,11 @@ const users = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await fetch('api/v1/activities');
+    const response = await fetch('/api/v1/activities');
     const activityData = await response.json();
     activities.value = activityData;
 
-    const userResponse = await fetch('api/v1/users');
+    const userResponse = await fetch('/api/v1/users');
     const userData = await userResponse.json();
     users.value = userData;
   } catch (error) {
@@ -74,6 +75,5 @@ onMounted(async () => {
 .h2{
   font-size: 32px;
   font-weight: bold;
-  color: white; 
 }
 </style>

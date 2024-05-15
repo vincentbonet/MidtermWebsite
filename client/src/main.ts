@@ -1,4 +1,4 @@
-import './assets/style.css'
+import './assets/main.css'
 import 'vue-toastification/dist/index.css'
 
 import { createApp } from 'vue'
@@ -11,5 +11,5 @@ const app = createApp(App)
 app
     .use(router)
     .use(Toaster, {})
-    
+
 app.mount('#app')

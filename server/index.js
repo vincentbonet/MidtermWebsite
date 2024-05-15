@@ -6,37 +6,51 @@ const activityRouter = require('./controllers/activities');
 const exerciseRouter = require('./controllers/exercises');
 const { parseAuthToken } = require('./middleware/auth');
 
+/**  
+ * @typedef {import('../client/src/model/transporttypes').DataEnvelope<null> } ErrorDataEnvelope
+ * */
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app
+// logging start
+console.log('Starting server...');
+console.log('PORT:', PORT);
+
   // Serve static files from the 'dist' directory
-  .use(express.static(path.join(__dirname, 'client/dist')))
+  app.use(express.static('client/dist'));
+  // Parse JSON bodies
+  app.use(express.json());
   // CORS handling
-  .use((req, res, next) => {
+  app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*');
     if (req.method === 'OPTIONS') {
       return res.sendStatus(200);
     }
     next();
   })
   // API routes
-  .use('/api/v1/users', usersRouter)
-  .use('/api/v1/activities', activityRouter)
-  .use('/api/v1/exercises', exerciseRouter)
+  app.get('/', (req, res) => {
+    res.send('Hello World!');
+  })
+  app.use('/api/v1/users', usersRouter)
+  app.use('/api/v1/activities', activityRouter)
+  app.use('/api/v1/exercises', exerciseRouter)
   // Protected route
-  .get('/protected-route', parseAuthToken, (req, res) => {
+  app.get('/protected-route', parseAuthToken, (req, res) => {
     res.json({ message: 'This is a protected route' });
   })
   // 404
-  .use((req, res) => {
+  app.use((req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));
   })
   // Error handling
-  .use((err, req, res, next) => {
+  app.use((err, req, res, next) => {
     console.error(err);
+    /**@type {ErrorDataEnvelope} */
     const results = {
       isSuccess: false,
       message: err.message || 'Internal Server Error',

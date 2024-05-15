@@ -1,6 +1,6 @@
 const fs = require('fs/promises');
 const path = require('path');
-const userPath = path.join(__dirname, '../data/users.json');
+const userPath = path.join(__dirname, '/../data/users.json');
 
 /** @type { Promise< { items: import('../../client/src/model/users').User[] } > } */
 const promiseData = fs 

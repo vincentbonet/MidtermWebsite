@@ -71,4 +71,9 @@ onMounted(async () => {
 .users li {
   margin-bottom: 8px;
 }
+.h2{
+  font-size: 32px;
+  font-weight: bold;
+  color: white; 
+}
 </style>

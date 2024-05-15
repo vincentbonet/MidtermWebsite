@@ -21,6 +21,6 @@ import ModalSocial from '../components/ModalSocial.vue';
 .header h1 {
   font-size: 32px;
   font-weight: bold;
-  color: #333; 
+  color: white; 
 }
 </style>

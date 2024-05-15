@@ -23,7 +23,9 @@ async function save() {
 
 async function getAll() {
     const data = await promiseData;
-    return data.items.map(x=> ({...x}));
+    return data.items.map(x=> ({
+        ...x, password: undefined, phone: undefined
+    }))
 }
 
 /**

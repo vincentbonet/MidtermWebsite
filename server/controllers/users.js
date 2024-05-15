@@ -7,100 +7,105 @@ const router = require('express').Router();
  * @typedef {import('../../client/src/model/transporttypes').DataListEnvelope<User>} UserDataListEnvelope
  */
 
-router
-    .get('/', (req, res, next) => {
-        getAll()
-            .then(all => {
-                /** @type {UserDataListEnvelope} */
-                const response = {
-                    data: all,
-                    totalCount: all.length,
-                    isSuccess: true,
-                };
-                res.send(response);
-            })
-            .catch(next);
-    })
-    .get('/search', (req, res, next) => {
+router.get('/', async (req, res, next) => {
+    try {
+        const all = await getAll();
+        const response = {
+            data: all,
+            totalCount: all.length,
+            isSuccess: true,
+        };
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get('/search', async (req, res, next) => {
+    try {
         const searchTerm = req.query.q;
         if (typeof searchTerm !== 'string') throw new Error('Search term is required');
-        search(searchTerm)
-            .then(result => {
-                /** @type {UserDataListEnvelope} */
-                const response = {
-                    data: result,
-                    totalCount: result.length,
-                    isSuccess: true,
-                };
-                res.send(response);
-            })
-            .catch(next);
-    })
-    .get('/:id', (req, res, next) => {
+        const result = await search(searchTerm);
+        const response = {
+            data: result,
+            totalCount: result.length,
+            isSuccess: true,
+        };
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get('/:id', async (req, res, next) => {
+    try {
         const id = req.params.id;
-        get(+id)
-            .then(result => {
-                /** @type {UserDataEnvelope} */
-                const response = {
-                    data: result,
-                    isSuccess: true,
-                };
-                res.send(response);
-            })
-            .catch(next);
-    })
-    .post('/', (req, res, next) => {
+        const result = await get(+id);
+        const response = {
+            data: result,
+            isSuccess: true,
+        };
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.post('/', async (req, res, next) => {
+    try {
         const user = req.body;
-        add(user)
-            .then(result => {
-                /** @type {UserDataEnvelope} */
-                const response = {
-                    data: result,
-                    isSuccess: true,
-                };
-                res.send(response);
-            })
-            .catch(next);
-    })
-    .post('/login', (req, res, next) => {
+        const result = await add(user);
+        const response = {
+            data: result,
+            isSuccess: true,
+        };
+        res.status(201).json(response);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.post('/login', async (req, res, next) => {
+    try {
         const { email, password } = req.body;
-        login(email, password)
-            .then(result => {
-                /** @type {UserDataEnvelope} */
-                const response = {
-                    data: result,
-                    isSuccess: true,
-                };
-                res.send(response);
-            })
-            .catch(next);
-    })
-    .patch('/:id', (req, res, next) => {
+        const result = await login(email, password);
+        const response = {
+            data: result,
+            isSuccess: true,
+        };
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.patch('/:id', async (req, res, next) => {
+    try {
         const user = req.body;
         user.id = req.params.id;
-        update(user)
-            .then(result => {
-                /** @type {UserDataEnvelope} */
-                const response = {
-                    data: result,
-                    isSuccess: true,
-                };
-                res.send(response);
-            })
-            .catch(next);
-    })
-    .delete('/:id', (req, res, next) => {
+        const result = await update(user);
+        const response = {
+            data: result,
+            isSuccess: true,
+        };
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.delete('/:id', async (req, res, next) => {
+    try {
         const id = req.params.id;
-        remove(+id)
-            .then(result => {
-                /** @type {UserDataEnvelope} */
-                const response = {
-                    data: result,
-                    isSuccess: true,
-                };
-                res.send(response);
-            })
-            .catch(next);
-    });
+        const result = await remove(+id);
+        const response = {
+            data: result,
+            isSuccess: true,
+        };
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+});
 
 module.exports = router;

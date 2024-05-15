@@ -1,82 +1,79 @@
 <template>
-    <transition name="modal">
-      <div class="modal" v-if="isOpen" @click.self="closeModal">
-        <div class="modal-content">
-          <span class="close" @click="closeModal">&times;</span>
-          <h2>Social Data</h2>
-          <div v-if="socialData">
-            <ul>
-              <li v-for="(activity, index) in socialData" :key="index">{{ activity }}</li>
-            </ul>
-          </div>
-          <div v-else>
-            <p>Loading...</p>
-          </div>
-        </div>
+  <div class="container mx-auto">
+    <div class="grid grid-cols-2 gap-8">
+      <div class="flex flex-col items-center">
+        <h2 class="text-2xl font-bold mb-4 text-white">Activities</h2>
+        <ul>
+          <li v-for="activity in activities" :key="activity.id" class="mb-2">{{ activity.name }}</li>
+        </ul>
       </div>
-    </transition>
-  </template>
-  
-  <script setup lang="ts">
-  import { ref } from 'vue';
-  
-  const isOpen = ref(false);
-  const socialData = ref<string[] | null>(null);
-  
-  const props = defineProps<{
-    isOpen: boolean;
-    socialData: string[] | null;
-  }>();
-  
-  function closeModal() {
-    isOpen.value = false;
+      <div class="flex flex-col items-center">
+        <h2 class="text-2xl font-bold mb-4 text-white">Users</h2>
+        <ul>
+          <li v-for="user in users" :key="user.id" class="mb-2">{{ user.name }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const activities = ref([]);
+const users = ref([]);
+
+onMounted(async () => {
+  try {
+    const response = await fetch('/api/v1/activities');
+    const activityData = await response.json();
+    activities.value = activityData;
+
+    const userResponse = await fetch('/api/v1/users');
+    const userData = await userResponse.json();
+    users.value = userData;
+  } catch (error) {
+    console.error('Error fetching data:', error);
   }
-  </script>
-  
-  <style scoped>
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-  }
-  
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
-  
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .modal-enter {
-    opacity: 0;
-  }
-  .modal-leave-active {
-    opacity: 0;
-  }
-  .modal-enter-active,
-  .modal-leave-to {
-    transition: opacity 0.5s;
-  }
-  </style>
-  
+});
+</script>
+
+<style scoped>
+.header {
+  font-family: 'Gothic', sans-serif;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.activities,
+.users {
+  width: 45%;
+}
+
+.activities h2,
+.users h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.activities ul,
+.users ul {
+  list-style: none;
+  padding: 0;
+}
+
+.activities li,
+.users li {
+  margin-bottom: 8px;
+}
+.h2{
+  font-size: 32px;
+  font-weight: bold;
+}
+</style>

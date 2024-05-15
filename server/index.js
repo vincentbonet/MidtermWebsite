@@ -1,17 +1,28 @@
-const express = require('express');
+require('dotenv').config();
 const path = require('path');
+const express = require('express');
 const usersRouter = require('./controllers/users');
 const activityRouter = require('./controllers/activities');
 const exerciseRouter = require('./controllers/exercises');
 const { parseAuthToken } = require('./middleware/auth');
 
-const app = express();
-const PORT = process.env.PORT ?? 3000;
+/**  
+ * @typedef {import('../client/src/model/transporttypes').DataEnvelope<null> } ErrorDataEnvelope
+ * */
 
-app
-  .use(express.static('client/dist'))
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// logging start
+console.log('Starting server...');
+
+  // Serve static files from the 'dist' directory
+  app.use(express.static('client/dist'));
+  // Parse JSON bodies
+  app.use(express.json());
   // CORS handling
-  .use((req, res, next) => {
+  app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', '*');
     res.setHeader('Access-Control-Allow-Headers', '*');
@@ -21,27 +32,32 @@ app
     next();
   })
   // API routes
-  .use('/api/v1/users', usersRouter)
-  .use('/api/v1/activities', activityRouter)
-  .use('/api/v1/exercises', exerciseRouter)
+  app.get('/', (req, res) => {
+    res.send('Hello World!');
+  })
+  app.use('/api/v1/users', usersRouter)
+  app.use('/api/v1/activities', activityRouter)
+  app.use('/api/v1/exercises', exerciseRouter)
   // Protected route
-  .get('/protected-route', parseAuthToken, (req, res) => {
+  app.get('/protected-route', parseAuthToken, (req, res) => {
     res.json({ message: 'This is a protected route' });
   })
   // 404
-  .use((req, res) => {
-    res.sendFile(path.join(__dirname, ''));
+  app.use((req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
   })
   // Error handling
-  .use((err, req, res, next) => {
+  app.use((err, req, res, next) => {
     console.error(err);
+    /**@type {ErrorDataEnvelope} */
     const results = {
       isSuccess: false,
       message: err.message || 'Internal Server Error',
       data: null,
     };
-    res.status(500).send(results);
-  })
+    res.status(500).json(results);
+  });
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`App is listening on http://localhost:${PORT}`);

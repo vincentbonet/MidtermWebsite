@@ -7,9 +7,8 @@ import router from './router'
 import Toaster from 'vue-toastification'
 
 const app = createApp(App)
-
 app
     .use(router)
     .use(Toaster, {})
-    
+
 app.mount('#app')

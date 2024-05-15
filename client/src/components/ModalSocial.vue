@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <div class="content">
-      <div class="activities">
-        <h2>Activities</h2>
+  <div class="container mx-auto">
+    <div class="grid grid-cols-2 gap-8">
+      <div>
+        <h2 class="text-2xl font-bold mb-4">Activities</h2>
         <ul>
-          <li v-for="activity in activities" :key="activity.id">{{ activity.name }}</li>
+          <li v-for="activity in activities" :key="activity.id" class="mb-2">{{ activity.name }}</li>
         </ul>
       </div>
-      <div class="users">
-        <h2>Users</h2>
+      <div>
+        <h2 class="text-2xl font-bold mb-4">Users</h2>
         <ul>
-          <li v-for="user in users" :key="user.id">{{ user.name }}</li>
+          <li v-for="user in users" :key="user.id" class="mb-2">{{ user.name }}</li>
         </ul>
       </div>
     </div>

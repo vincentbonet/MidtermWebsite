@@ -1,10 +1,9 @@
 require('dotenv').config();
 const path = require('path');
 const express = require('express');
-const usersRouter = require('./controllers/users');
-const activityRouter = require('./controllers/activities');
-const exerciseRouter = require('./controllers/exercises');
-const { parseAuthToken } = require('./middleware/auth');
+const users = require('./controllers/users');
+const activities = require('./controllers/activities');
+const exercises = require('./controllers/exercises');
 
 /**  
  * @typedef {import('../client/src/model/transporttypes').DataEnvelope<null> } ErrorDataEnvelope
@@ -35,13 +34,9 @@ console.log('Starting server...');
   app.get('/', (req, res) => {
     res.send('Hello World!');
   })
-  app.use('/api/v1/users', usersRouter)
-  app.use('/api/v1/activities', activityRouter)
-  app.use('/api/v1/exercises', exerciseRouter)
-  // Protected route
-  app.get('/protected-route', parseAuthToken, (req, res) => {
-    res.json({ message: 'This is a protected route' });
-  })
+  app.use('/api/v1/users', users)
+  app.use('/api/v1/activities', activities)
+  app.use('/api/v1/exercises', exercises)
   // 404
   app.use((req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));

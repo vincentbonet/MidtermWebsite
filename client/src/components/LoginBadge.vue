@@ -71,5 +71,4 @@ function toggleDropdown() {
 </script>
 
 <style scoped>
-/* Add any necessary scoped styles here */
 </style>

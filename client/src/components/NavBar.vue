@@ -14,7 +14,8 @@
           <RouterLink to="/myactivity" class="nav-link">My Activities</RouterLink>
           <RouterLink to="/statistics" class="nav-link">Statistics</RouterLink>
         </div>
-        <div class="flex-grow">
+        <div class="flex-grow"></div> <!-- Added to push the search bar to the right -->
+        <div>
           <Typeahead />
         </div>
         <div class="flex items-center">
@@ -54,5 +55,11 @@ defineComponent({
 
 .nav-dropdown {
   border-radius: 0.375rem; 
+}
+
+@media (min-width: 768px) {
+  .typeahead-container {
+    margin-right: 20px; 
+  }
 }
 </style>

@@ -71,23 +71,29 @@
     width: 100%;
   }
   
+  .custom-item:hover {
+    background-color: #edf2f7; 
+  }
+  
   .custom-item {
     display: flex;
     align-items: center;
+    padding: 10px;
+    transition: background-color 0.2s ease;
   }
   
   .item-details {
-    margin-left: 1rem;
+    margin-left: 10px;
   }
   
   .custom-item h4 {
-    font-size: 0.8rem;
-    color: #666;
+    font-size: 0.9rem; 
+    color: #333; 
   }
   
   .custom-item p {
-    font-size: 0.7rem;
-    color: #999;
+    font-size: 0.8rem; 
+    color: #666; 
   }
   </style>
   

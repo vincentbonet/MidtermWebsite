@@ -3,11 +3,13 @@ import { ref, onMounted, watch } from 'vue';
 import Oruga from '@oruga-ui/oruga-next';
 
 let value = ref('');
-let dataArray = ref([]);
+let dataArray = ref<Array<any>>([]);
+let page = ref(1);
+let pageSize = ref(50);
 
 watch(value, async (newValue) => {
     if (newValue.length > 2) {
-        const response = await fetch(`api/v1/users?search=${newValue}`);
+        const response = await fetch(`api/v1/users?search=${newValue}&page=${page.value}&pageSize=${pageSize.value}`);
         const data = await response.json();
         dataArray.value = data;
     } else {
@@ -15,6 +17,23 @@ watch(value, async (newValue) => {
     }
 });
 
+const handleScroll = async (event: UIEvent) => {
+    const target = event.target as HTMLDivElement;
+    if (target.scrollTop + target.clientHeight >= target.scrollHeight) {
+        page.value++;
+        await fetchData();
+    }
+};
+
+const fetchData = async () => {
+    if (value.value.length > 2) {
+        const response = await fetch(`api/v1/users?search=${value.value}&page=${page.value}&pageSize=${pageSize.value}`);
+        const data = await response.json();
+        dataArray.value.push(...data);
+    }
+};
+
+onMounted(fetchData);
 </script>
 
 <template>
@@ -29,6 +48,7 @@ watch(value, async (newValue) => {
                 clearable
                 open-on-focus
                 :data="dataArray"
+                @scroll="handleScroll"
                 >
                 <template #empty>No results found.</template>
                 <template #custom="{ item }">

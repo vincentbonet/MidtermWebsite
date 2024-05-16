@@ -1,5 +1,4 @@
-{
-    "items": [
+[
             {
               "firstName": "John",
               "lastName": "Doe",
@@ -71,4 +70,3 @@
               "admin": false
             }
           ]
-}

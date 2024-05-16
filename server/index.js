@@ -32,7 +32,7 @@ console.log('Starting server...');
   })
   // API routes
   app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
   })
   app.use('/api/v1/users', users)
   app.use('/api/v1/activities', activities)

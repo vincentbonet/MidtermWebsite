@@ -2,14 +2,13 @@
     <div class="typeahead-container">
       <o-field class="typeahead-field">
         <o-autocomplete
-          v-model="value"
           rounded
           expanded
-          placeholder="Search for a user"
+          v-model="value"
+          :data="dataArray"
+          placeholder=" Search for a user"
           icon="search"
           clearable
-          open-on-focus
-          :data="dataArray"
           @scroll="handleScroll"
         >
           <template #empty>No results found.</template>

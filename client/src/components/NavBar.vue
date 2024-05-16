@@ -14,6 +14,9 @@
           <RouterLink to="/myactivity" class="nav-link">My Activities</RouterLink>
           <RouterLink to="/statistics" class="nav-link">Statistics</RouterLink>
         </div>
+        <div class="flex-items-center">
+          <Typeahead />
+        </div>
         <div class="flex items-center">
           <LoginBadge />
         </div>
@@ -25,6 +28,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import LoginBadge from './LoginBadge.vue';
+import Typeahead  from './Typeahead.vue';
 </script>
 
 <style scoped>

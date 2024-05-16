@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
-import Oruga from '@oruga-ui/oruga-next';
-
 let value = ref('');
 let dataArray = ref<Array<any>>([]);
 let page = ref(1);

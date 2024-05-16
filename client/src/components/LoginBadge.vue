@@ -48,7 +48,6 @@ const robertUser: User = {
   lastName: 'Bonet',
   email: 'robert@example.com',
   image: profile1,
-  id: 0,
   username: 'robertbonet',
   password: '',
   age: 21,

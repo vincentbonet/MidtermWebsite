@@ -27,8 +27,13 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { defineComponent } from 'vue';
 import LoginBadge from './LoginBadge.vue';
 import Typeahead  from './Typeahead.vue';
+
+defineComponent({ 
+  components: { LoginBadge, Typeahead }
+});
 </script>
 
 <style scoped>

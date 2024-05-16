@@ -14,7 +14,7 @@
           <RouterLink to="/myactivity" class="nav-link">My Activities</RouterLink>
           <RouterLink to="/statistics" class="nav-link">Statistics</RouterLink>
         </div>
-        <div>
+        <div class="flex-grow">
           <Typeahead />
         </div>
         <div class="flex items-center">

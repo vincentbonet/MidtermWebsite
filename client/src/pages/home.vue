@@ -31,48 +31,44 @@ import Footer from '../components/Footer.vue';
 
 import * as THREE from 'three';
 
-export default {
-  setup() {
-    const animationTarget = ref(null);
+const animationTarget = ref(null);
 
-    onMounted(() => {
-      // Anime.js animation
-      anime({
-        targets: ['.text-center'],
-        translateY: [-50, 0],
-        opacity: [0, 1],
-        duration: 1000,
-        easing: 'easeOutQuad',
-        delay: 500
-      });
+onMounted(() => {
+  // Anime.js animation
+  anime({
+    targets: ['.text-center'],
+    translateY: [-50, 0],
+    opacity: [0, 1],
+    duration: 1000,
+    easing: 'easeOutQuad',
+    delay: 500
+  });
 
-      //something extra I wanted to add to the landing page
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
+  //something extra I wanted to add to the landing page
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
 
-      const geometry = new THREE.BoxGeometry();
-      const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-      const cube = new THREE.Mesh(geometry, material);
-      scene.add(cube);
+  const geometry = new THREE.BoxGeometry();
+  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
 
-      camera.position.z = 5;
+  camera.position.z = 5;
 
-      const animate = function () {
-        requestAnimationFrame(animate);
+  const animate = function () {
+    requestAnimationFrame(animate);
 
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
 
-        renderer.render(scene, camera);
-      };
+    renderer.render(scene, camera);
+  };
 
-      animate();
-    });
+  animate();
+});
 
-    return { animationTarget };
-  }
-};
+export { animationTarget };
 </script>

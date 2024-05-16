@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ModalSocial from '../components/ModalSocial.vue';
+import Footer from '../components/Footer.vue';
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import ModalSocial from '../components/ModalSocial.vue';
       <h1>Find Your Buddies</h1>
     </header>
     <ModalSocial />
+    <Footer></Footer>
   </div>
 </template>
 

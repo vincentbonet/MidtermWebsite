@@ -25,7 +25,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import LoginBadge from './LoginBadge.vue';
-
 </script>
 
 <style scoped>
@@ -36,10 +35,12 @@ import LoginBadge from './LoginBadge.vue';
   font-size: 0.875rem;
   line-height: 1.25rem;
   border-radius: 0.375rem; 
+  transition: transform 0.2 ease;
 }
 
 .nav-link:hover {
   background-color: #374151;
+  transform: translateY(-2px);
 }
 
 .nav-dropdown {

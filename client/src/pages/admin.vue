@@ -2,7 +2,7 @@
   <div class="flex items-center justify-center min-h-screen bg-gray-800 text-gray-200">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-screen-lg">
       <div class="bg-gray-700 p-6 shadow-md rounded-md"> 
-        <h2 class="text-xl font-semibold mb-4">Add New User</h2>
+        <h2 class="text-xl font-semibold mb-4 text-center">Add New User</h2>
         <form @submit.prevent="addNewUser" class="space-y-4">
           <div class="flex flex-col">
             <label for="firstName" class="font-semibold mb-1 text-center">First Name:</label>
@@ -35,8 +35,8 @@
         </div>
       </div>
     </div>
-  </div>
   <Footer></Footer>
+  </div>
 </template>
 
 <script>

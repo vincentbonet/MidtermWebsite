@@ -9,7 +9,7 @@
       <button @click="doLogout" class="px-2 py-1 text-sm font-medium text-white bg-red-600 rounded hover:bg-red-700">Not You?</button>
     </div>
     <div v-else>
-      <router-link to="/signup" class="px-4 py-2 text-sm font-medium text-white bg-transparent border border-gray-400 rounded hover:bg-gray-700 hover:border-gray-500">Sign up</router-link>
+      <router-link to="/signup" class="px-4 py-2 text-sm font-medium text-white bg-transparent border border-gray-400 rounded hover:bg-gray-700 hover:border-gray-500" style="min-width: 100px;">Sign up</router-link>
       <div class="relative inline-block dropdown-container" @click="toggleDropdown">
         <button
           type="button"
@@ -31,8 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { RouterLink } from 'vue-router'; 
+import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
 import { type User } from '../model/users';
 import { refSession, useLogin } from '../viewModel/session';
 import profile1 from '../assets/profile1.jpg';
@@ -43,6 +43,7 @@ const dropdownOpen = ref(false);
 const { login, logout } = useLogin();
 
 const robertUser: User = {
+  id: 0,
   firstName: 'Robert',
   lastName: 'Bonet',
   email: 'robert@example.com',
@@ -68,13 +69,8 @@ function doLogout() {
 function toggleDropdown() {
   dropdownOpen.value = !dropdownOpen.value;
 }
-
-onMounted(() => {
-  document.addEventListener('click', (event) => {
-    const target = event.target as HTMLElement;
-    if (!target.closest('.dropdown-container')) {
-      dropdownOpen.value = false;
-    }
-  });
-});
 </script>
+
+<style scoped>
+/* Add any necessary scoped styles here */
+</style>

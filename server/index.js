@@ -30,8 +30,8 @@ console.log('Starting server...');
     }
     next();
   })
-  // API routes
-  app.get('/', (req, res) => {
+  // Defaults to home page when server starts
+  app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));
   })
   app.use('/api/v1/users', users)

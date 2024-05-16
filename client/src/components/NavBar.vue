@@ -14,7 +14,7 @@
           <RouterLink to="/myactivity" class="nav-link">My Activities</RouterLink>
           <RouterLink to="/statistics" class="nav-link">Statistics</RouterLink>
         </div>
-        <div class="flex-grow"></div> <!-- Added to push the search bar to the right -->
+        <div class="flex-grow"></div> 
         <div>
           <Typeahead />
         </div>

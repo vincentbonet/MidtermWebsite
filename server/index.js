@@ -35,7 +35,7 @@ console.log('Starting server...');
     res.send('Hello World!');
   })
   app.use('/api/v1/users', users)
-  app.use('/api/v1/activities', activitis)
+  app.use('/api/v1/activities', activities)
   app.use('/api/v1/exercises', exercises)
   // 404
   app.use((req, res) => {

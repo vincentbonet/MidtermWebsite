@@ -28,7 +28,7 @@ const newActivity = ref({
 const submitForm = async () => {
   if (newActivity.value.name && newActivity.value.distance !== null && newActivity.value.duration) {
     try {
-      const response = await fetch('/api/v1/activities', {
+      const response = await fetch('https://finalprojectwsp.onrender.com/api/v1/activities', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

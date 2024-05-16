@@ -26,11 +26,11 @@ const users = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await fetch('/api/v1/activities');
+    const response = await fetch('https://finalprojectwsp.onrender.com/api/v1/activities');
     const activityData = await response.json();
     activities.value = activityData;
 
-    const userResponse = await fetch('/api/v1/users');
+    const userResponse = await fetch('https://finalprojectwsp.onrender.com/api/v1/users');
     const userData = await userResponse.json();
     users.value = userData;
   } catch (error) {

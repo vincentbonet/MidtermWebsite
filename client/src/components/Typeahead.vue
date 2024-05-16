@@ -2,6 +2,19 @@
 import { ref, onMounted, watch } from 'vue';
 import Oruga from '@oruga-ui/oruga-next';
 
+let value = ref('');
+let dataArray = ref([]);
+
+watch(value, async (newValue) => {
+    if (newValue.length > 2) {
+        const response = await fetch(`api/v1/users?search=${newValue}`);
+        const data = await response.json();
+        dataArray.value = data;
+    } else {
+        dataArray.value = [];
+    }
+});
+
 </script>
 
 <template>

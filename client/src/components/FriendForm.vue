@@ -28,7 +28,7 @@ duration: '',
 const submitForm = async () => {
 if (newWorkout.value.name && newWorkout.value.distance !== null && newWorkout.value.duration) {
   try {
-    const response = await fetch('/api/v1/activities', {
+    const response = await fetch('https://finalprojectwsp.onrender.com/api/v1/activities', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

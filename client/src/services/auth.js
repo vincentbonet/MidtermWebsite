@@ -26,7 +26,7 @@ async function fetchData() {
     }
 
     try {
-        const response = await fetch('/api/data', {
+        const response = await fetch('https://finalprojectwsp.onrender.com/api/v1/data', {
             headers: { 'Authorization': token }
         });
         if (response.ok) {

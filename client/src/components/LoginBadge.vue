@@ -9,8 +9,8 @@
       <button @click="doLogout" class="px-2 py-1 text-sm font-medium text-white bg-red-600 rounded hover:bg-red-700">Not You?</button>
     </div>
     <div v-else>
-      <RouterLink to="/signup" class="px-4 py-2 text-sm font-medium text-white bg-transparent border border-gray-400 rounded hover:bg-gray-700 hover:border-gray-500">Sign up</RouterLink>
-      <div class="relative inline-block" @click="toggleDropdown">
+      <router-link to="/signup" class="px-4 py-2 text-sm font-medium text-white bg-transparent border border-gray-400 rounded hover:bg-gray-700 hover:border-gray-500">Sign up</router-link>
+      <div class="relative inline-block dropdown-container" @click="toggleDropdown">
         <button
           type="button"
           class="inline-flex justify-center w-24 h-10 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-700 text-sm font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
@@ -22,7 +22,7 @@
         <div v-show="dropdownOpen" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
             <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:text-gray-900" role="menuitem" @click="doLogin(robertUser)">Login as Robert</a>
-            <RouterLink to="/login" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:text-gray-900" role="menuitem">Log in as other User</RouterLink>
+            <router-link to="/login" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:text-gray-900" role="menuitem">Log in as other User</router-link>
           </div>
         </div>
       </div>
@@ -32,8 +32,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { RouterLink } from 'vue-router'; 
 import { type User } from '../model/users';
 import { refSession, useLogin } from '../viewModel/session';
+import profile1 from '../assets/profile1.jpg';
 
 const session = refSession();
 const dropdownOpen = ref(false);
@@ -44,7 +46,7 @@ const robertUser: User = {
   firstName: 'Robert',
   lastName: 'Bonet',
   email: 'robert@example.com',
-  image: './assets/profile1.jpg',
+  image: profile1,
   id: 0,
   username: 'robertbonet',
   password: '',

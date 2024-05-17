@@ -64,6 +64,7 @@
   <style scoped>
   .typeahead-container {
     position: relative;
+    height: 25px;
   }
   
   .typeahead-field {
